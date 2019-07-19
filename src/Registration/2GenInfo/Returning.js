@@ -8,7 +8,8 @@ import {
   FormHelperText,
   Input,
   TextField,
-  Typography
+  Typography,
+  Grid
 } from "@material-ui/core";
 
 export default function Returning(props) {
@@ -57,12 +58,18 @@ export default function Returning(props) {
         First Season?
       </Typography>
       <form className={classes.form}>
-        <Button variant="outlined" onClick={toggleNewness} color="primary">
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+        <Button variant="outlined" fullWidth onClick={toggleNewness} color="primary">
           Yep!
         </Button>
-        <Button variant="outlined" onClick={toggleVeteran} color="primary">
+        </Grid>
+        <Grid item xs={6}>
+        <Button variant="outlined" fullWidth onClick={toggleVeteran} color="primary">
           Back for more?
         </Button>
+        </Grid>
+        </Grid>
       </form>
     </React.Fragment>
   ) : playerState === "New" ? (

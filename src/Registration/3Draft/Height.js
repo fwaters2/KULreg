@@ -39,11 +39,12 @@ export default function Height(props) {
         Height
       </Typography>
       <form className={classes.form}>
-        <Grid container direction="row" alignItems="center">
-          <Grid item>
+        <Grid container alignItems='center'>
+          <Grid item xs={7}>
             <Input
               className={classes.input}
               value={value}
+              fullWidth
               margin="dense"
               onChange={handleInputChange}
               onBlur={handleBlur}
@@ -57,7 +58,7 @@ export default function Height(props) {
               }}
             />
           </Grid>
-          <Grid item xs className={classes.vertSlider}>
+          <Grid item xs={5} className={classes.vertSlider}>
             <Slider
               value={typeof value === "number" ? value : 140}
               onChange={handleSliderChange}

@@ -27,6 +27,7 @@ export default function Name(props) {
               helperText="Required*"
               variant="outlined"
               autoFocus
+              fullWidth
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -39,6 +40,7 @@ export default function Name(props) {
               margin="normal"
               variant="outlined"
               helperText="Required*"
+              fullWidth
             />
           </Grid>
         </Grid>

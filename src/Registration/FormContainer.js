@@ -3,7 +3,7 @@ import FormExample from "./FormExample";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, ButtonGroup } from "@material-ui/core";
+import { Button, Container, ButtonGroup, Grid, Paper } from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
 import Register from "./Register";
@@ -32,7 +32,12 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   vertSlider: {
-    height: 300
+    textAlign:'center',
+    height: 300,
+    
+  },
+  picButton:{
+    height: 100
   }
 }));
 
@@ -60,26 +65,35 @@ export default function FormContainer() {
         <br />
         <br />
         
-        
-        <ButtonGroup fullWidth  color="secondary" aria-label="Full width outlined button group">
+        <div className={{flexGrow: 1}}> 
+        <Grid container spacing={3}>
         {step === 0 ? null : (
+          <Grid item xs={6}>
           <Button
             variant="outlined"
             color="secondary"
             onClick={() => stepChange(step - 1)}
+            
           >
             Back
           </Button>
+          </Grid>
         )}
+        <Grid item xs={6} >
           <Button
           variant="outlined"
           color="primary"
+          
           onClick={() => stepChange(step + 1)}
+          
         >
           Next
         </Button>
-        </ButtonGroup>
+        </Grid>
+        </Grid>
+        </div>
       </div>
+      
     </Container>
   );
   // switch (step) {

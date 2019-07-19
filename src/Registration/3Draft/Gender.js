@@ -10,22 +10,24 @@ export default function Gender(props) {
       </Typography>
       <form className={classes.form}>
         <Grid container  spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <Button
               variant="outlined"
               color="secondary"
-              className={classes.button}
+              className={classes.picButton}
+              fullWidth
             >
-              <i className="fas fa-venus" />
+              <i className="fas fa-venus fa-5x" />
             </Button>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <Button
               variant="outlined"
               color="primary"
-              className={classes.button}
+              className={classes.picButton}
+              fullWidth
             >
-              <i className="fas fa-mars" />
+              <i className="fas fa-mars fa-5x"/>
             </Button>
           </Grid>
         </Grid>
