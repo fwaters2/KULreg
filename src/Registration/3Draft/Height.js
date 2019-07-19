@@ -42,10 +42,10 @@ export default function Height(props) {
   };
   return (
     <React.Fragment>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         Height
       </Typography>
-      <Grid container spacing={1} alignItems="center">
+      <Grid container direction="row" alignItems="center">
         <Grid item>
           <Input
             className={classes.input}
