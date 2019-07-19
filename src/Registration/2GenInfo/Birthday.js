@@ -1,24 +1,19 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
-
-export default function Birthday() {
-  const classes = useStyles();
+export default function Birthday(props) {
+  const {classes} = props
 
   return (
-    <form className={classes.container} noValidate>
+    <React.Fragment>
+      <Typography component="h1" variant="h5">
+        Birthday
+      </Typography>
+    
+    <form className={classes.form} noValidate>
       <TextField
+      autoFocus
         id="date"
         label="Birthday"
         type="date"
@@ -30,5 +25,6 @@ export default function Birthday() {
         fullWidth
       />
     </form>
+    </React.Fragment>
   );
 }

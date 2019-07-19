@@ -1,34 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { CountryRegionData } from "react-country-region-selector";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Button } from "@material-ui/core";
+import {Typography } from "@material-ui/core";
 
-export default class Nationality extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nationality: ""
-    };
-  }
-  render() {
-    return (
-      <div>
-        {this.state.nationality === "" ? (
-          <h1>Where are you from?</h1>
-        ) : this.state.nationality === "Taiwan" ? (
-          <h1>你好!</h1>
-        ) : (
-          <h1>Hello Person not from Taiwan</h1>
-        )}
+export default function Nationality(props) {
+  const [nationality, newNation] = React.useState("");
+
+  const { classes } = props;
+  return (
+    <React.Fragment>
+      <Typography component="h1" variant="h5">
+        Nationality
+      </Typography>
+      <form className={classes.form}>
         <TextField
+        autoFocus
           id="country"
           label="Country"
           fullWidth
-          value={this.state.nationality}
+          value={nationality}
           select
           //onChange={props.handleChange("country")}
-          onChange={e => this.setState({ nationality: e.target.value })}
+          onChange={e => newNation(e.target.value)}
         >
           <MenuItem key={"Taiwan"} value={"Taiwan"}>
             {"Taiwan"}
@@ -46,13 +40,7 @@ export default class Nationality extends Component {
             </MenuItem>
           ))}
         </TextField>
-        <br />
-        <br />
-
-        <Button variant="contained" color="primary">
-          Let's Go!
-        </Button>
-      </div>
-    );
-  }
+      </form>
+    </React.Fragment>
+  );
 }

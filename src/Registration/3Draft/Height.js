@@ -4,18 +4,11 @@ import {
   Typography,
   Grid,
   Input,
-  makeStyles,
   InputAdornment
 } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  root: {
-    height: 300,
-  }
-});
-
 export default function Height(props) {
-  const classes = useStyles();
+  const { classes } = props;
 
   const [value, setValue] = React.useState(170);
 
@@ -26,12 +19,12 @@ export default function Height(props) {
   const handleInputChange = event => {
     setValue(event.target.value === "" ? "" : Number(event.target.value));
   };
-  function unitConverter(cm){
+  function unitConverter(cm) {
     let alltheinches = Math.floor(cm / 2.54);
     let inches = alltheinches % 12;
     let feet = Math.floor(alltheinches / 12);
     return feet + "ft " + inches + "in";
-  };
+  }
 
   const handleBlur = () => {
     if (value < 140) {
@@ -42,41 +35,42 @@ export default function Height(props) {
   };
   return (
     <React.Fragment>
-      <Typography variant="h4" gutterBottom>
+      <Typography component="h1" variant="h5">
         Height
       </Typography>
-      <Grid container direction="row" alignItems="center">
-        <Grid item>
-          <Input
-            className={classes.input}
-            value={value}
-            margin="dense"
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            endAdornment={<InputAdornment position="end">cm</InputAdornment>}
-            inputProps={{
-              step: 1,
-              min: 140,
-              max: 220,
-              type: "number",
-              "aria-labelledby": "input-slider"
-            }}
-          />
+      <form className={classes.form}>
+        <Grid container direction="row" alignItems="center">
+          <Grid item>
+            <Input
+              className={classes.input}
+              value={value}
+              margin="dense"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              endAdornment={<InputAdornment position="end">cm</InputAdornment>}
+              inputProps={{
+                step: 1,
+                min: 140,
+                max: 220,
+                type: "number",
+                "aria-labelledby": "input-slider"
+              }}
+            />
+          </Grid>
+          <Grid item xs className={classes.vertSlider}>
+            <Slider
+              value={typeof value === "number" ? value : 140}
+              onChange={handleSliderChange}
+              aria-labelledby="input-slider"
+              orientation="vertical"
+              min={140}
+              max={220}
+              valueLabelDisplay="on"
+              valueLabelFormat={unitConverter}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs className={classes.root}>
-          <Slider
-            value={typeof value === "number" ? value : 140}
-            onChange={handleSliderChange}
-            aria-labelledby="input-slider"
-            orientation="vertical"
-            min={140}
-            max={220}
-            valueLabelDisplay="on"
-            valueLabelFormat={unitConverter}
-          />
-        </Grid>
-        
-      </Grid>
+      </form>
     </React.Fragment>
   );
 }

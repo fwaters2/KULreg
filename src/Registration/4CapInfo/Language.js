@@ -1,7 +1,8 @@
 import React from "react";
-import { Typography, Button, Grid, Paper } from "@material-ui/core";
+import { Typography, Button, Grid} from "@material-ui/core";
 
 export default function Experience(props) {
+  const {classes} =props
   function Options() {
       return(
     <React.Fragment>
@@ -25,7 +26,8 @@ export default function Experience(props) {
   }
   return (
     <React.Fragment>
-      <Typography variant="h4">Language Abilities</Typography>
+      <Typography component="h1" variant="h5">Languages</Typography>
+      <form className={classes.form}>
       <Grid container>
         <Grid container item xs={4} spacing={3} direction="column">
           <Options />
@@ -34,6 +36,7 @@ export default function Experience(props) {
           <Options />
         </Grid>
       </Grid>
+      </form>
     </React.Fragment>
   );
 }

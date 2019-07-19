@@ -1,18 +1,10 @@
 import React from "react";
 import "./App.css";
 import FormContainer from "./Registration/FormContainer";
-import '@fortawesome/fontawesome-free/css/all.css'
+import "@fortawesome/fontawesome-free/css/all.css";
 
 function App() {
-
-
-  return (
-    
-      <div className="popout">
-        <FormContainer />
-      </div>
-    
-  );
+  return <FormContainer />;
 }
 
 export default App;

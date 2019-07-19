@@ -5,12 +5,14 @@ import {
   TextField,
   Checkbox,
   FormGroup,
-  FormLabel
+  FormLabel,
+  Typography
 } from "@material-ui/core";
 
-export default function Contact() {
+export default function Contact(props) {
     const [facebook, updateFB ] = React.useState(false)
     const [line, updateLine ] = React.useState(false)
+    const {classes} = props
     function toggleFacebook(){
         updateFB(!facebook)
     }
@@ -19,6 +21,11 @@ export default function Contact() {
     }
 
   return (
+    <React.Fragment>
+      <Typography component="h1" variant="h5">
+         Contact Info
+        </Typography>
+        <form className={classes.form}>
     <FormControl component="fieldset">
       <FormLabel component="legend">
         Let your captain know the best way to reach you!
@@ -50,5 +57,7 @@ export default function Contact() {
         {line ? <TextField label={"Line ID"} /> : null}
       </FormGroup>
     </FormControl>
+    </form>
+    </React.Fragment>
   );
 }

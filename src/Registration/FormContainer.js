@@ -3,55 +3,85 @@ import FormExample from "./FormExample";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Paper } from "@material-ui/core";
+import { Button, Container, ButtonGroup } from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
-import Form00Register from "./Form00Register";
+import Register from "./Register";
 import Birthday from "./2GenInfo/Birthday";
 import Name from "./2GenInfo/Name";
 import Contact from "./4CapInfo/Contact";
 import Experience from "./3Draft/Experience";
 import Athl from "./3Draft/Athl";
-import Language from "./4CapInfo/Language"
+import Language from "./4CapInfo/Language";
 
 const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
+  },
   root: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(5)
   },
   button: {
     margin: theme.spacing(1)
+  },
+  vertSlider: {
+    height: 300
   }
 }));
 
 export default function FormContainer() {
-  const [step, stepChange] = React.useState(11);
+  const [step, stepChange] = React.useState(1);
   const classes = useStyles();
   const pages = [
     <FormExample />,
-    <Form00Register />,
-    <Name />,
-    <Birthday />,
-    <Nationality />,
-    <Returning />,
+    <Register classes={classes} />,
+    <Name classes={classes} />,
+    <Birthday classes={classes} />,
+    <Nationality classes={classes} />,
+    <Returning classes={classes} />,
     <Gender classes={classes} />,
     <Height classes={classes} />,
-    <Experience classes={classes}/>,
-    <Athl classes={classes}/>,
-    <Contact />,
-    <Language classes={classes}/>
+    <Experience classes={classes} />,
+    <Athl classes={classes} />,
+    <Contact classes={classes} />,
+    <Language classes={classes} />
   ];
-  return(
-    <Container>
-      <Paper elevation={5} className={classes.root}>
-    {pages[step]}
-    
-    <br/>
-    <br/>
-    <Button variant='contained' color='secondary' onClick={()=>(stepChange(step - 1 ))}>Go Back</Button>
-    <Button variant= 'contained' color='primary' onClick={()=>(stepChange(step + 1 ))}>Advance</Button>
-    </Paper>
+  return (
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        {pages[step]}
+        <br />
+        <br />
+        
+        
+        <ButtonGroup fullWidth  color="secondary" aria-label="Full width outlined button group">
+        {step === 0 ? null : (
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => stepChange(step - 1)}
+          >
+            Back
+          </Button>
+        )}
+          <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => stepChange(step + 1)}
+        >
+          Next
+        </Button>
+        </ButtonGroup>
+      </div>
     </Container>
-  )
+  );
   // switch (step) {
   //   case "example":
   //     return <FormExample />;

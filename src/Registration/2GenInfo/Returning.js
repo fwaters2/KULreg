@@ -2,35 +2,20 @@ import React from "react";
 import {
   Button,
   Slider,
-  FormControl,
   MenuItem,
   Select,
   InputLabel,
   FormHelperText,
   Input,
-  TextField
+  TextField,
+  Typography
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  formControl: {
-    //margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    //marginTop: theme.spacing(2),
-  }
-}));
-
-export default function Returning() {
+export default function Returning(props) {
   const [unChosenOption, updateChoice] = React.useState(true);
   const [playerState, handleEXP] = React.useState(null);
   const [referredBy, handleReferrer] = React.useState("");
-  const classes = useStyles();
+  const { classes } = props;
   // const [values, setValues] = React.useState({
   //   age: "",
   //   name: "hai"
@@ -39,8 +24,8 @@ export default function Returning() {
   // const inputLabel = React.useRef(null);
   // const [labelWidth, setLabelWidth] = React.useState(0);
   // React.useEffect(() => {
-    //setLabelWidth(inputLabel.current.offsetWidth);
- // }, []);
+  //setLabelWidth(inputLabel.current.offsetWidth);
+  // }, []);
 
   // function handleChange(event) {
   //   setValues(oldValues => ({
@@ -48,9 +33,9 @@ export default function Returning() {
   //     [event.target.name]: event.target.value
   //   }));
   // }
-  function handleSource(e){
-    handleReferrer(e.target.value)
-    console.log(e.target.value)
+  function handleSource(e) {
+    handleReferrer(e.target.value);
+    console.log(e.target.value);
   }
 
   ///Previous
@@ -68,16 +53,24 @@ export default function Returning() {
 
   return unChosenOption ? (
     <React.Fragment>
-      <Button variant="outlined" onClick={toggleNewness} color="primary">
+      <Typography component="h1" variant="h5">
         First Season?
-      </Button>
-      <Button variant="outlined" onClick={toggleVeteran} color="primary">
-        Back for more?
-      </Button>
+      </Typography>
+      <form className={classes.form}>
+        <Button variant="outlined" onClick={toggleNewness} color="primary">
+          Yep!
+        </Button>
+        <Button variant="outlined" onClick={toggleVeteran} color="primary">
+          Back for more?
+        </Button>
+      </form>
     </React.Fragment>
   ) : playerState === "New" ? (
     <React.Fragment>
-      <FormControl className={classes.formControl}>
+      <Typography component="h1" variant="h5">
+        First Season?
+      </Typography>
+      <form className={classes.form}>
         <InputLabel htmlFor="age-helper">Source</InputLabel>
         <Select
           value={referredBy}
@@ -94,18 +87,18 @@ export default function Returning() {
           <MenuItem value={"Friend"}>Friend</MenuItem>
         </Select>
         <FormHelperText>How did you hear about us?</FormHelperText>
-      </FormControl>
-      <br/>
-      {referredBy==="Player" || referredBy==="Friend"?
-      <TextField
-        id="standard-helperText"
-        label="Player/Friend"
-        value=""
-        className={classes.textField}
-        helperText="Who should get credit?"
-        margin="normal"
-      />
-  :null}
+      </form>
+      <br />
+      {referredBy === "Player" || referredBy === "Friend" ? (
+        <TextField
+          id="standard-helperText"
+          label="Player/Friend"
+          value=""
+          className={classes.textField}
+          helperText="Who should get credit?"
+          margin="normal"
+        />
+      ) : null}
       <br />
       <Button variant="outlined" onClick={back}>
         Back

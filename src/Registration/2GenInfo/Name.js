@@ -1,28 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Typography, Grid } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  },
-  dense: {
-    marginTop: 19
-  },
-  menu: {
-    width: 200
-  }
-}));
-
-export default function Name() {
-  const classes = useStyles();
+export default function Name(props) {
+  const { classes } = props;
 
   //const handleChange = name => event => {
   //  setValues({ ...values, [name]: event.target.value });
@@ -30,49 +11,53 @@ export default function Name() {
 
   return (
     <React.Fragment>
-      <Typography variant="h4">Names</Typography>
-      <form className={classes.container} noValidate autoComplete="off">
+      <Typography component="h1" variant="h5">
+        Names
+      </Typography>
+      <form className={classes.form} noValidate autoComplete="off">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              autoComplete="fname"
               id="standard-required"
               label="First Name"
               className={classes.textField}
               margin="normal"
               helperText="Required*"
+              variant="outlined"
+              autoFocus
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              autoComplete="lname"
               id="standard-required"
               label="Last Name"
               className={classes.textField}
               margin="normal"
+              variant="outlined"
               helperText="Required*"
             />
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-required"
-              label="Chinese Name"
-              className={classes.textField}
-              margin="normal"
-              helperText="Optional"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="standard-required"
-              label="English Nickname"
-              className="normal"
-              helperText="Optional"
-            />
-          </Grid>
-        </Grid>
+        <TextField
+          id="standard-required"
+          label="Chinese Name"
+          fullWidth
+          margin="normal"
+          variant="outlined"
+          helperText="Optional"
+        />
+        <TextField
+          id="standard-required"
+          label="English Nickname"
+          fullWidth
+          margin="normal"
+          variant="outlined"
+          helperText="Optional"
+        />
       </form>
     </React.Fragment>
   );
