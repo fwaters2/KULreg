@@ -1,0 +1,68 @@
+{
+  "Skills": {
+    "title": "Skills",
+    "options": [
+      "Newbie. Less than 3 Ultimate games played.",
+      "More than 3 games, but I still can't throw up field",
+      "I can throw up field, but I am a much better cutter",
+      "I can throw up field, down field, around the field, and through the field  (I handle)"
+    ]
+  },
+  "EXP": {
+    "title": "Experience",
+    "options": [
+      "I'm back for more! (More than 5 years)",
+      "I'm addicted (2- 5 years)",
+      "Less than 2 years experience",
+      "A few months experience",
+      "I said I'm a newbie! (0 experience)"
+    ]
+  },
+  "ATHL": {
+    "title": "Athleticism",
+    "options": [
+      "What's modest? Another name for slow?? I'm a cheeeeeeetah!",
+      "I'm as quick as I am modest (4)",
+      "I've done sports and can hold my own but not known for my speed(average)",
+      "I can guard the fastest guy on the other team...When he has cramps in both legs and a concussion (slow)",
+      "I always guard the slowest person on the other team. (Lowest)"
+    ]
+  },
+
+  "English": {
+    "title": "English",
+    "options": ["Native", "Fluent", "Intermediate", "Learning!", "Non-existent"]
+  },
+  "Chinese": {
+    "title": "Chinese",
+    "options": ["Native", "Fluent", "Intermediate", "Learning!", "Non-existent"]
+  },
+
+  "Party": {
+    "title": "Party",
+    "options": ["Very Important", "Mediocre", "Not Important"]
+  },
+  "Improve": {
+    "title": "Improvement",
+    "options": [
+      "Thirsty (Extremely interested)",
+      "Mediocre",
+      "Not interested at all"
+    ]
+  },
+  "Day 1": {
+    "options": ["In", "Likely", "Unlikely", "Out"]
+  },
+  "Day 2": {
+    "options": ["In", "Likely", "Unlikely", "Out"]
+  },
+  "Day 3": {
+    "options": ["In", "Likely", "Unlikely", "Out"]
+  },
+  "Day 4": {
+    "options": ["In", "Likely", "Unlikely", "Out"]
+  },
+  "Finals": {
+    "options": ["In", "Likely", "Unlikely", "Out"]
+  }
+}

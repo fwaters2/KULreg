@@ -3,19 +3,19 @@ import { Typography, Grid } from "@material-ui/core";
 import "../../Choices.json";
 import MultipleChoice from "../MultipleChoice.js";
 
-export default function Experience(props) {
+export default function Interests(props) {
   const { classes } = props;
   return (
     <React.Fragment>
       <Typography component="h1" variant="h5">
-        Languages
+        Interests
       </Typography>
       <Grid container>
         <Grid item xs={6}>
-          <MultipleChoice classes={classes} category={"English"} />
+          <MultipleChoice classes={classes} category={"Party"} />
         </Grid>
         <Grid item xs={6}>
-          <MultipleChoice classes={classes} category={"Chinese"} />
+          <MultipleChoice classes={classes} category={"Improve"} />
         </Grid>
       </Grid>
     </React.Fragment>

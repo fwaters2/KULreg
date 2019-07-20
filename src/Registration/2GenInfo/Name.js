@@ -16,7 +16,7 @@ export default function Name(props) {
       </Typography>
       <form className={classes.form} noValidate autoComplete="off">
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <TextField
               required
               autoComplete="fname"
@@ -30,7 +30,7 @@ export default function Name(props) {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <TextField
               required
               autoComplete="lname"

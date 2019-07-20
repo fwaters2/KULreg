@@ -7,6 +7,7 @@ import {
   FormGroup,
   FormLabel,
   Typography
+
 } from "@material-ui/core";
 
 export default function Contact(props) {
@@ -22,6 +23,7 @@ export default function Contact(props) {
 
   return (
     <React.Fragment>
+      
       <Typography component="h1" variant="h5">
          Contact Info
         </Typography>
@@ -58,6 +60,7 @@ export default function Contact(props) {
       </FormGroup>
     </FormControl>
     </form>
+    
     </React.Fragment>
   );
 }
