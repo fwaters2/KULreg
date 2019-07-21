@@ -4,7 +4,7 @@ import "../../Choices.json";
 import MultipleChoice from "../MultipleChoice.js";
 
 export default function Experience(props) {
-  const { classes } = props;
+  const { classes , values, handleButtonClick } = props;
   return (
     <React.Fragment>
       <Typography component="h1" variant="h5">
@@ -12,10 +12,10 @@ export default function Experience(props) {
       </Typography>
       <Grid container>
         <Grid item xs={6}>
-          <MultipleChoice classes={classes} category={"English"} />
+          <MultipleChoice handleButtonClick={handleButtonClick} values={values} classes={classes} category={"English"} />
         </Grid>
         <Grid item xs={6}>
-          <MultipleChoice classes={classes} category={"Chinese"} />
+          <MultipleChoice handleButtonClick={handleButtonClick} values={values} classes={classes} category={"Chinese"} />
         </Grid>
       </Grid>
     </React.Fragment>

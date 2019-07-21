@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 export default function Register(props) {
-  const { classes } = props;
+  const { classes, handleChange, values} = props;
   return (
     <React.Fragment>
       <Typography component="h1" variant="h5">
@@ -26,6 +26,8 @@ export default function Register(props) {
           label="Email Address"
           name="email"
           autoComplete="email"
+          value={values.email}
+          onChange={handleChange("email")}
           autoFocus
         />
         <TextField
@@ -37,6 +39,8 @@ export default function Register(props) {
           label="Password"
           type="password"
           id="password"
+          value={values.password}
+          onChange={handleChange("password")}
           autoComplete="current-password"
         />
         <FormControlLabel

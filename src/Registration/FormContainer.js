@@ -62,26 +62,102 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function FormContainer() {
-  const [step, stepChange] = React.useState(0);
+  const [step, stepChange] = React.useState(7);
+  const [values, setValues] = React.useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    chName: "",
+    nickName: "",
+    birthday: "1990-06-06",
+    nationality: "",
+    seasons: "unknown",
+    source: "",
+    referredBy: "",
+    gender: "",
+    height:160,
+    Skills:"test",
+    EXP:"",
+    ATHL:"",
+    English:"",
+    Chinese:""
+  });
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+  const handleButtonClick = (name, value) => {
+    setValues({ ...values, [name]: value });
+  }
+  const handleComplexChange = (name, value) => () => {
+    setValues({ ...values, [name]: value });
+  };
+  const handleSliderChange = name => (e, value) => {
+    setValues({ ...values, [name]: value });
+  };
+
   const classes = useStyles();
   const pages = [
-    <Register classes={classes} />,
-    <Name classes={classes} />,
-    <Birthday classes={classes} />,
-    <Nationality classes={classes} />,
-    <Returning classes={classes} />,
-    <Gender classes={classes} />,
-    <Height classes={classes} />,
-    <MultipleChoice classes={classes} category="Skills" />,
-    <MultipleChoice classes={classes} category="EXP" />,
-    <MultipleChoice classes={classes} category="ATHL" />,
-    <Contact classes={classes} />,
-    <Language classes={classes} />,
-    <Interests classes={classes} />,
-    <Commitments classes={classes} />,
-    <JerseyOrder classes={classes} />,
-    <ExtraSwag classes={classes} />,
-    <Checkout classes={classes} />
+    <Register classes={classes} handleChange={handleChange} values={values} />,
+    <Name classes={classes} handleChange={handleChange} values={values} />,
+    <Birthday classes={classes} handleChange={handleChange} values={values} />,
+    <Nationality
+      classes={classes}
+      handleChange={handleChange}
+      values={values}
+    />,
+    <Returning
+      classes={classes}
+      handleChange={handleChange}
+      handleComplexChange={handleComplexChange}
+      values={values}
+      handleSliderChange={handleSliderChange}
+    />,
+    <Gender
+      classes={classes}
+      handleChange={handleChange}
+      values={values}
+      handleComplexChange={handleComplexChange}
+    />,
+    <Height
+      classes={classes}
+      handleChange={handleChange}
+      values={values}
+      handleSliderChange={handleSliderChange}
+    />,
+    <MultipleChoice
+      classes={classes}
+      category="Skills"
+      values={values}
+      handleButtonClick={handleButtonClick}
+    />,
+    <MultipleChoice
+      classes={classes}
+      category="EXP"
+      values={values}
+      handleButtonClick={handleButtonClick}
+    />,
+    <MultipleChoice
+      classes={classes}
+      category="ATHL"
+      values={values}
+      handleButtonClick={handleButtonClick}
+    />,
+    <Contact classes={classes} handleChange={handleChange} values={values} />,
+    <Language classes={classes} values={values} handleButtonClick={handleButtonClick}/>,
+    <Interests classes={classes} values={values} handleButtonClick={handleButtonClick} />,
+    <Commitments
+      classes={classes}
+      handleChange={handleChange}
+      values={values}
+    />,
+    <JerseyOrder
+      classes={classes}
+      handleChange={handleChange}
+      values={values}
+    />,
+    <ExtraSwag classes={classes} handleChange={handleChange} values={values} />,
+    <Checkout classes={classes} handleChange={handleChange} values={values} />
   ];
   return (
     <Container component="main" maxWidth="xs">

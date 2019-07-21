@@ -13,14 +13,7 @@ import {
 } from "@material-ui/core";
 
 export default function Returning(props) {
-  const [unChosenOption, updateChoice] = React.useState(true);
-  const [playerState, handleEXP] = React.useState(null);
-  const [referredBy, handleReferrer] = React.useState("");
-  const { classes } = props;
-  // const [values, setValues] = React.useState({
-  //   age: "",
-  //   name: "hai"
-  // });
+  const { classes, handleComplexChange, handleChange, values, handleSliderChange } = props;
 
   // const inputLabel = React.useRef(null);
   // const [labelWidth, setLabelWidth] = React.useState(0);
@@ -34,25 +27,8 @@ export default function Returning(props) {
   //     [event.target.name]: event.target.value
   //   }));
   // }
-  function handleSource(e) {
-    handleReferrer(e.target.value);
-    console.log(e.target.value);
-  }
 
-  ///Previous
-  function toggleNewness() {
-    updateChoice(!unChosenOption);
-    handleEXP("New");
-  }
-  function toggleVeteran() {
-    updateChoice(!unChosenOption);
-    handleEXP("Veteran");
-  }
-  function back() {
-    updateChoice(!unChosenOption);
-  }
-
-  return unChosenOption ? (
+  return values.seasons === "unknown" ? (
     <React.Fragment>
       <Typography component="h1" variant="h5">
         First Season?
@@ -60,32 +36,43 @@ export default function Returning(props) {
       <form className={classes.form}>
         <Grid container spacing={3}>
           <Grid item xs={6}>
-        <Button variant="outlined" fullWidth onClick={toggleNewness} color="primary">
-          Yep!
-        </Button>
-        </Grid>
-        <Grid item xs={6}>
-        <Button variant="outlined" fullWidth onClick={toggleVeteran} color="primary">
-          Back for more?
-        </Button>
-        </Grid>
+            <Button
+              variant="outlined"
+              fullWidth
+              onClick={handleComplexChange("seasons", 0)}
+              color="primary"
+            >
+              Yep!
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              variant="outlined"
+              fullWidth
+              onClick={handleComplexChange("seasons", 1)}
+              color="primary"
+            >
+              Back for more?
+            </Button>
+          </Grid>
         </Grid>
       </form>
     </React.Fragment>
-  ) : playerState === "New" ? (
+  ) : values.seasons === 0 ? (
     <React.Fragment>
       <Typography component="h1" variant="h5">
         First Season?
       </Typography>
       <form className={classes.form}>
-        <InputLabel htmlFor="age-helper">Source</InputLabel>
+        <InputLabel>Referred By:</InputLabel>
         <Select
-          value={referredBy}
-          onChange={handleSource}
-          input={<Input name="referredBy" id="age-helper" />}
+          fullWidth
+          value={values.source}
+          onChange={handleChange("source")}
+          input={<Input />}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value={""}>
+            <em>Referred By:</em>
           </MenuItem>
           <MenuItem value={"Facebook"}>Facebook</MenuItem>
           <MenuItem value={"Google"}>Google</MenuItem>
@@ -96,26 +83,39 @@ export default function Returning(props) {
         <FormHelperText>How did you hear about us?</FormHelperText>
       </form>
       <br />
-      {referredBy === "Player" || referredBy === "Friend" ? (
+      {values.source === "Player" || values.source === "Friend" ? (
         <TextField
           id="standard-helperText"
           label="Player/Friend"
-          value=""
+          value={values.referredBy}
+          onChange={handleChange("referredBy")}
           className={classes.textField}
           helperText="Who should get credit?"
           margin="normal"
         />
       ) : null}
       <br />
-      <Button variant="outlined" onClick={back}>
+      <Button
+        variant="outlined"
+        onClick={handleComplexChange("seasons", "unknown")}
+      >
         Back
       </Button>
     </React.Fragment>
   ) : (
     <React.Fragment>
       <div>How Many season's have you played?</div>
-      <Slider min={1} max={7} />
-      <Button variant="outlined" onClick={back}>
+      <Slider
+        value={values.seasons}
+        onChange= {handleSliderChange("seasons")}
+        min={1}
+        max={7}
+        valueLabelDisplay="on"
+      />
+      <Button
+        variant="outlined"
+        onClick={handleComplexChange("seasons", "unknown")}
+      >
         Back
       </Button>
     </React.Fragment>

@@ -8,14 +8,10 @@ import {
 } from "@material-ui/core";
 
 export default function Height(props) {
-  const { classes } = props;
+  const { classes, values, handleSliderChange } = props;
 
   const [value, setValue] = React.useState(170);
-
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+  
   const handleInputChange = event => {
     setValue(event.target.value === "" ? "" : Number(event.target.value));
   };
@@ -43,7 +39,7 @@ export default function Height(props) {
           <Grid item xs={7}>
             <Input
               className={classes.input}
-              value={value}
+              value={values.height}
               fullWidth
               margin="dense"
               onChange={handleInputChange}
@@ -60,8 +56,8 @@ export default function Height(props) {
           </Grid>
           <Grid item xs={5} className={classes.vertSlider}>
             <Slider
-              value={typeof value === "number" ? value : 140}
-              onChange={handleSliderChange}
+              value={values.height}
+              onChange={handleSliderChange("height")}
               aria-labelledby="input-slider"
               orientation="vertical"
               min={140}

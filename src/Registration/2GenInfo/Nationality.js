@@ -2,12 +2,10 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { CountryRegionData } from "react-country-region-selector";
 import MenuItem from "@material-ui/core/MenuItem";
-import {Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 export default function Nationality(props) {
-  const [nationality, newNation] = React.useState("");
-
-  const { classes } = props;
+  const { classes, handleChange, values } = props;
   return (
     <React.Fragment>
       <Typography component="h1" variant="h5">
@@ -15,14 +13,13 @@ export default function Nationality(props) {
       </Typography>
       <form className={classes.form}>
         <TextField
-        autoFocus
+          autoFocus
           id="country"
           label="Country"
           fullWidth
-          value={nationality}
+          value={values.nationality}
           select
-          //onChange={props.handleChange("country")}
-          onChange={e => newNation(e.target.value)}
+          onChange={handleChange("nationality")}
         >
           <MenuItem key={"Taiwan"} value={"Taiwan"}>
             {"Taiwan"}

@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 
 export default function Birthday(props) {
-  const {classes} = props
+  const {classes, handleChange, values} = props
 
   return (
     <React.Fragment>
@@ -17,8 +17,9 @@ export default function Birthday(props) {
         id="date"
         label="Birthday"
         type="date"
-        defaultValue="1990-06-06"
+        value={values.birthday}
         className={classes.textField}
+        onChange={handleChange("birthday")}
         InputLabelProps={{
           shrink: true,
         }}
