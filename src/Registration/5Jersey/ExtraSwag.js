@@ -10,19 +10,34 @@ import "./SwagPics/Hat_Black.PNG";
 import "./SwagPics/Hat_White.jpg";
 import "./SwagPics/Disc_Black.jpg";
 import "./SwagPics/Disc_White.jpg";
-import { FormControl, FormGroup, FormControlLabel, Checkbox } from "@material-ui/core";
+import {
+  FormControl,
+  FormGroup,
+  FormControlLabel,
+  Checkbox
+} from "@material-ui/core";
 const blackHatPic = require("./SwagPics/Hat_Black.PNG");
 const whiteHatPic = require("./SwagPics/Hat_White.jpg");
 const blackDiscPic = require("./SwagPics/Disc_Black.jpg");
 const whiteDiscPic = require("./SwagPics/Disc_White.jpg");
 
 export default function ExtraSwag(props) {
-  const { classes } = props;
+  const { classes, values, handleCheckBoxToggle } = props;
   const swag = [
-    { title: "Black Disc", image: blackDiscPic, price: "400nt" },
-    { title: "White Disc", image: whiteDiscPic, price: "400nt" },
-    { title: "Black Hat", image: blackHatPic, price: "200nt" },
-    { title: "White Hat", image: whiteHatPic, price: "200nt" }
+    {
+      id: "discBlack",
+      title: "Black Disc",
+      image: blackDiscPic,
+      price: "400nt"
+    },
+    {
+      id: "discWhite",
+      title: "White Disc",
+      image: whiteDiscPic,
+      price: "400nt"
+    },
+    { id: "hatBlack", title: "Black Hat", image: blackHatPic, price: "200nt" },
+    { id: "hatWhite", title: "White Hat", image: whiteHatPic, price: "200nt" }
   ];
   return (
     <React.Fragment>
@@ -47,16 +62,19 @@ export default function ExtraSwag(props) {
                         {item.title}
                       </Typography>
                       <FormControl component="fieldset">
-                        <FormGroup
-                          aria-label="position"
-                          name="position"
-                          value=''
-                          //onChange={handleChange}
-                          row
-                        >
+                        <FormGroup aria-label="position" name="position" row>
                           <FormControlLabel
                             value="start"
-                            control={<Checkbox color="primary" />}
+                            control={
+                              <Checkbox
+                                color="primary"
+                                onChange={handleCheckBoxToggle(
+                                  item.id,
+                                  values[item.id]
+                                )}
+                                checked={values[item.id]}
+                              />
+                            }
                             label={item.price}
                             labelPlacement="start"
                           />
@@ -70,7 +88,9 @@ export default function ExtraSwag(props) {
           </Container>
         </main>
       </form>
-      <div style={{backgroundColor:"red"}}>Placeholder for Extra Jersey Option</div>
+      <div style={{ backgroundColor: "red" }}>
+        Placeholder for Extra Jersey Option
+      </div>
     </React.Fragment>
   );
 }

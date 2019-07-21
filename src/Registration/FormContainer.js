@@ -58,11 +58,20 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  listItem: {
+    padding: theme.spacing(1, 0),
+  },
+  total: {
+    fontWeight: '700',
+  },
+  title: {
+    marginTop: theme.spacing(2),
   }
 }));
 
 export default function FormContainer() {
-  const [step, stepChange] = React.useState(7);
+  const [step, stepChange] = React.useState(16);
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -81,7 +90,23 @@ export default function FormContainer() {
     EXP:"",
     ATHL:"",
     English:"",
-    Chinese:""
+    Chinese:"",
+    Party:"",
+    Improve:"",
+    "Day 1":"",
+    "Day 2":"",
+    "Day 3":"",
+    "Day 4":"",
+    Finals:"",
+    jerseyBack:"",
+    size:"",
+    jerseyNum1:"",
+    jerseyNum2:"",
+    discBlack:false,
+    discWhite:false,
+    hatBlack:false,
+    hatWhite:false,
+    order:[]
   });
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -95,7 +120,9 @@ export default function FormContainer() {
   const handleSliderChange = name => (e, value) => {
     setValues({ ...values, [name]: value });
   };
-
+  const handleCheckBoxToggle = (name, value) => () => {
+    setValues({ ...values, [name]: !value });
+  }
   const classes = useStyles();
   const pages = [
     <Register classes={classes} handleChange={handleChange} values={values} />,
@@ -156,12 +183,13 @@ export default function FormContainer() {
       handleChange={handleChange}
       values={values}
     />,
-    <ExtraSwag classes={classes} handleChange={handleChange} values={values} />,
-    <Checkout classes={classes} handleChange={handleChange} values={values} />
+    <ExtraSwag handleCheckBoxToggle={handleCheckBoxToggle} classes={classes} values={values} />,
+    <Checkout classes={classes} values={values} />
   ];
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
+        
         {pages[step]}
         <br />
         <br />

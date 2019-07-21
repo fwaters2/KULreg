@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 import { Typography, Grid } from "@material-ui/core";
 
 export default function Commitments(props) {
-  const { classes } = props;
+  const { classes, values, handleChange } = props;
   //   const [values, setValues] = React.useState({
   //     date: "In",
   //     name: "hai"
@@ -28,14 +28,14 @@ export default function Commitments(props) {
   //   }
   function dayInput(date) {
     return (
-      <FormControl fullWidth variant="outlined" key={date} >
+      <FormControl fullWidth variant="outlined" key={date}>
         <InputLabel ref={inputLabel} htmlFor="outlined-date-simple">
           {date}
         </InputLabel>
         <Select
           fullWidth
-          value={''}
-          //onChange={handleChange}
+          value={values[date]}
+          onChange={handleChange(date)}
           input={
             <OutlinedInput
               labelWidth={labelWidth}

@@ -14,7 +14,7 @@ import "./Jersey only.PNG";
 const JerseyShirt = require("./Jersey only.PNG");
 const JerseySizes = require("./Sizes only.PNG");
 export default function JerseyOrder(props) {
-  const { classes } = props;
+  const { classes, values, handleChange } = props;
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
@@ -37,6 +37,8 @@ export default function JerseyOrder(props) {
               variant="outlined"
               autoFocus
               fullWidth
+              value={values.jerseyBack}
+              onChange={handleChange("jerseyBack")}
             />
           </Grid>
           <Grid item xs={4}>
@@ -46,8 +48,9 @@ export default function JerseyOrder(props) {
               </InputLabel>
               <Select
                 fullWidth
-                value=""
-                //onChange={handleChange}
+                value={values.size}
+
+                onChange={handleChange("size")}
                 input={
                   <OutlinedInput
                     //labelWidth={labelWidth}
@@ -75,6 +78,8 @@ export default function JerseyOrder(props) {
               variant="outlined"
               fullWidth
               type="number"
+              value={values.jerseyNum1}
+              onChange={handleChange("jerseyNum1")}
             />
           </Grid>
           <Grid item xs={4}>
@@ -87,6 +92,8 @@ export default function JerseyOrder(props) {
               helperText="Required*"
               fullWidth
               type="number"
+              value={values.jerseyNum2}
+              onChange={handleChange("jerseyNum2")}
             />
           </Grid>
         </Grid>

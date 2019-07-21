@@ -5,13 +5,8 @@ import { Typography, Grid } from "@material-ui/core";
 export default function Name(props) {
   const { classes, handleChange, values } = props;
 
-  //const handleChange = name => event => {
-  //  setValues({ ...values, [name]: event.target.value });
-  //};
-
   return (
-    <React.Fragment>
-      
+    <React.Fragment> 
       <Typography component="h1" variant="h5">
         Names
       </Typography>
@@ -56,7 +51,7 @@ export default function Name(props) {
           margin="normal"
           variant="outlined"
           helperText="Optional"
-          values={values.chName}
+          value={values.chName}
           onChange={handleChange("chName")}
         />
         <TextField
@@ -66,7 +61,7 @@ export default function Name(props) {
           margin="normal"
           variant="outlined"
           helperText="Optional"
-          values={values.nickName}
+          value={values.nickName}
           onChange={handleChange("nickName")}
         />
       </form>

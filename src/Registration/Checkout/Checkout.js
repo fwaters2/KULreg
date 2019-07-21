@@ -17,33 +17,47 @@ const payments = [
   { name: 'Account Number', detail: '012345667' },
 ];
 
-const useStyles = makeStyles(theme => ({
-  listItem: {
-    padding: theme.spacing(1, 0),
-  },
-  total: {
-    fontWeight: '700',
-  },
-  title: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 export default function Checkout(props) {
-  const classes = useStyles();
-
+  const {classes, values} = props
+  const aswagOrder = values.discBlack?{name:"value"}:null
+  const swagOrder= [values.discBlack,values.discWhite,values.hatBlack,values.hatWhite]
+  {console.log(aswagOrder)}
+  const items = products.push({
+    name:"",
+    desc:"",
+    price:""
+  })
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map(product => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
+   
+        {values.discBlack?
+        <ListItem className={classes.listItem} >
+        <ListItemText primary={"Photo"} secondary={"Black Disc"} />
+        <Typography variant="body2">400nt</Typography>
+      </ListItem>
+      :null}
+      {values.discWhite?
+        <ListItem className={classes.listItem} >
+        <ListItemText primary={"Photo"} secondary={"White Disc"} />
+        <Typography variant="body2">400nt</Typography>
+      </ListItem>
+      :null}
+      {values.hatBlack?
+        <ListItem className={classes.listItem} >
+        <ListItemText primary={"Photo"} secondary={"Black Hat"} />
+        <Typography variant="body2">200nt</Typography>
+      </ListItem>
+      :null}
+      {values.hatWhite?
+        <ListItem className={classes.listItem} >
+        <ListItemText primary={"Photo"} secondary={"White Hat"} />
+        <Typography variant="body2">200nt</Typography>
+      </ListItem>
+      :null}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
