@@ -41,9 +41,6 @@ export default function ExtraSwag(props) {
   ];
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        Extra Swag
-      </Typography>
       <form className={classes.form}>
         <CssBaseline />
         <main>

@@ -55,19 +55,16 @@ export default function Commitments(props) {
 
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        Commitments
-      </Typography>
-      <form className={classes.form} autoComplete="off">
+      
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item container justify='center' alignItems='center' xs={8}>
             <i className="fas fa-calendar-alt fa-10x" />
           </Grid>
           <Grid item xs={4}>
             {dates.map(day => dayInput(day))}
           </Grid>
         </Grid>
-      </form>
+      
     </React.Fragment>
   );
 }

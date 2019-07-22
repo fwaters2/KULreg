@@ -1,30 +1,30 @@
 import React from "react";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, Grid } from "@material-ui/core";
 import "../Choices.json";
 const data = require("../Choices.json");
 
 export default function MultipleChoice(props) {
-  const { classes, category, values, handleButtonClick } = props;
+  const { category, values, handleButtonClick } = props;
 
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        {category}
-      </Typography>
-      <form className={classes.form}>
+      <Grid container spacing={1}>
         {data[category].options.map(option => (
-          <Button
-            key={option.value}
-            id={option.value}
-            color={"primary"}
-            onClick={(e)=>handleButtonClick(category,e.currentTarget.id)}
-            fullWidth
-            variant={option.value===values[category]?"contained":"outlined"}
-          >
-            {option.display}
-          </Button>
+          <Grid item xs={12} key={option.value}>
+            <Button
+              id={option.value}
+              color={"primary"}
+              onClick={e => handleButtonClick(category, e.currentTarget.id)}
+              fullWidth
+              variant={
+                option.value === values[category] ? "outlined" : "contained"
+              }
+            >
+              {option.display}
+            </Button>
+          </Grid>
         ))}
-      </form>
+      </Grid>
     </React.Fragment>
   );
 }

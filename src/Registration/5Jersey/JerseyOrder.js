@@ -22,9 +22,6 @@ export default function JerseyOrder(props) {
   }, []);
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        Team Jersey
-      </Typography>
       <form className={classes.form}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12}>

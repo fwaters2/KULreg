@@ -85,9 +85,9 @@
   "Improve": {
     "title": "Improvement",
     "options": [
-      { "display": "Thirsty (Extremely interested)", "value": "High" },
+      { "display": "Very Important", "value": "High" },
       { "display": "Mediocre", "value": "Middle" },
-      { "display": "Not interested at all", "value": "Low" }
+      { "display": "Not interested", "value": "Low" }
     ]
   },
   "Day 1": {

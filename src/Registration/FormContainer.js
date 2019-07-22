@@ -2,7 +2,7 @@ import React from "react";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Container, Grid, Typography, Paper, Divider } from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
 import Register from "./Register";
@@ -18,16 +18,26 @@ import ExtraSwag from "./5Jersey/ExtraSwag";
 import Checkout from "./Checkout/Checkout";
 
 const useStyles = makeStyles(theme => ({
+  title: {
+    margin: theme.spacing(3)
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    padding: theme.spacing(3)
   },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+  footer: {
+    marginTop: theme.spacing(1),
+    flexGrow: 1
   },
+  picButton: {
+    height: 150
+  },
+
+  //Below here is under review to be removed
+
   root: {
     padding: theme.spacing(5)
   },
@@ -41,9 +51,7 @@ const useStyles = makeStyles(theme => ({
   radioPage: {
     display: "flex"
   },
-  picButton: {
-    height: 100
-  },
+  
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8)
@@ -60,18 +68,15 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   listItem: {
-    padding: theme.spacing(1, 0),
+    padding: theme.spacing(1, 0)
   },
   total: {
-    fontWeight: '700',
-  },
-  title: {
-    marginTop: theme.spacing(2),
+    fontWeight: "700"
   }
 }));
 
 export default function FormContainer() {
-  const [step, stepChange] = React.useState(16);
+  const [step, stepChange] = React.useState(0);
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -79,41 +84,41 @@ export default function FormContainer() {
     lastName: "",
     chName: "",
     nickName: "",
-    birthday: "1990-06-06",
+    birthday: null,
     nationality: "",
     seasons: "unknown",
     source: "",
     referredBy: "",
     gender: "",
-    height:160,
-    Skills:"test",
-    EXP:"",
-    ATHL:"",
-    English:"",
-    Chinese:"",
-    Party:"",
-    Improve:"",
-    "Day 1":"",
-    "Day 2":"",
-    "Day 3":"",
-    "Day 4":"",
-    Finals:"",
-    jerseyBack:"",
-    size:"",
-    jerseyNum1:"",
-    jerseyNum2:"",
-    discBlack:false,
-    discWhite:false,
-    hatBlack:false,
-    hatWhite:false,
-    order:[]
+    height: null,
+    Skills: "test",
+    EXP: "",
+    ATHL: "",
+    English: "",
+    Chinese: "",
+    Party: "",
+    Improve: "",
+    "Day 1": "",
+    "Day 2": "",
+    "Day 3": "",
+    "Day 4": "",
+    Finals: "",
+    jerseyBack: "",
+    size: "",
+    jerseyNum1: "",
+    jerseyNum2: "",
+    discBlack: false,
+    discWhite: false,
+    hatBlack: false,
+    hatWhite: false,
+    order: []
   });
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleButtonClick = (name, value) => {
     setValues({ ...values, [name]: value });
-  }
+  };
   const handleComplexChange = (name, value) => () => {
     setValues({ ...values, [name]: value });
   };
@@ -122,117 +127,221 @@ export default function FormContainer() {
   };
   const handleCheckBoxToggle = (name, value) => () => {
     setValues({ ...values, [name]: !value });
-  }
+  };
+  const changeStep = () => {
+    stepChange(step + 1);
+  };
   const classes = useStyles();
   const pages = [
-    <Register classes={classes} handleChange={handleChange} values={values} />,
-    <Name classes={classes} handleChange={handleChange} values={values} />,
-    <Birthday classes={classes} handleChange={handleChange} values={values} />,
-    <Nationality
-      classes={classes}
-      handleChange={handleChange}
-      values={values}
-    />,
-    <Returning
-      classes={classes}
-      handleChange={handleChange}
-      handleComplexChange={handleComplexChange}
-      values={values}
-      handleSliderChange={handleSliderChange}
-    />,
-    <Gender
-      classes={classes}
-      handleChange={handleChange}
-      values={values}
-      handleComplexChange={handleComplexChange}
-    />,
-    <Height
-      classes={classes}
-      handleChange={handleChange}
-      values={values}
-      handleSliderChange={handleSliderChange}
-    />,
-    <MultipleChoice
-      classes={classes}
-      category="Skills"
-      values={values}
-      handleButtonClick={handleButtonClick}
-    />,
-    <MultipleChoice
-      classes={classes}
-      category="EXP"
-      values={values}
-      handleButtonClick={handleButtonClick}
-    />,
-    <MultipleChoice
-      classes={classes}
-      category="ATHL"
-      values={values}
-      handleButtonClick={handleButtonClick}
-    />,
-    <Contact classes={classes} handleChange={handleChange} values={values} />,
-    <Language classes={classes} values={values} handleButtonClick={handleButtonClick}/>,
-    <Interests classes={classes} values={values} handleButtonClick={handleButtonClick} />,
-    <Commitments
-      classes={classes}
-      handleChange={handleChange}
-      values={values}
-    />,
-    <JerseyOrder
-      classes={classes}
-      handleChange={handleChange}
-      values={values}
-    />,
-    <ExtraSwag handleCheckBoxToggle={handleCheckBoxToggle} classes={classes} values={values} />,
-    <Checkout classes={classes} values={values} />
+    {
+      title: "Sign up",
+      content: (
+        <Register
+          changeStep={changeStep}
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Names",
+      content: (
+        <Name classes={classes} handleChange={handleChange} values={values} />
+      )
+    },
+    {
+      title: "Birthday",
+      content: (
+        <Birthday
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Nationality",
+      content: (
+        <Nationality
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+          handleComplexChange={handleComplexChange}
+        />
+      )
+    },
+    {
+      title: "First Season?",
+      content: (
+        <Returning
+          classes={classes}
+          handleChange={handleChange}
+          handleComplexChange={handleComplexChange}
+          values={values}
+          handleSliderChange={handleSliderChange}
+        />
+      )
+    },
+    {
+      title: "Gender",
+      content: (
+        <Gender
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+          handleComplexChange={handleComplexChange}
+        />
+      )
+    },
+    {
+      title: "Height",
+      content: (
+        <Height
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+          handleSliderChange={handleSliderChange}
+        />
+      )
+    },
+    {
+      title: "Skills",
+      content: (
+        <MultipleChoice
+          classes={classes}
+          category="Skills"
+          values={values}
+          handleButtonClick={handleButtonClick}
+        />
+      )
+    },
+    {
+      title: "Experience",
+      content: (
+        <MultipleChoice
+          classes={classes}
+          category="EXP"
+          values={values}
+          handleButtonClick={handleButtonClick}
+        />
+      )
+    },
+    {
+      title: "Athletecism",
+      content: (
+        <MultipleChoice
+          classes={classes}
+          category="ATHL"
+          values={values}
+          handleButtonClick={handleButtonClick}
+        />
+      )
+    },
+    {
+      title: "Contact Information",
+      content: (
+        <Contact
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Languages",
+      content: (
+        <Language
+          classes={classes}
+          values={values}
+          handleButtonClick={handleButtonClick}
+        />
+      )
+    },
+    {
+      title: "Interests",
+      content: (
+        <Interests
+          classes={classes}
+          values={values}
+          handleButtonClick={handleButtonClick}
+        />
+      )
+    },
+    {
+      title: "Commitments",
+      content: (
+        <Commitments
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Team Jersey",
+      content: (
+        <JerseyOrder
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Extra Swag",
+      content: (
+        <ExtraSwag
+          handleCheckBoxToggle={handleCheckBoxToggle}
+          classes={classes}
+          values={values}
+        />
+      )
+    },
+    {
+      title: "Checkout",
+      content: <Checkout classes={classes} values={values} />
+    }
   ];
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
+      <div>{step}</div>
+      <Paper className={classes.paper}>
+        <Typography className={classes.title} component="h1" variant="h5">
+          {pages[step].title}
+        </Typography>
+        {pages[step].content}
         
-        {pages[step]}
-        <br />
-        <br />
-
-        <div className={{ flexGrow: 1 }}>
-          <Grid container spacing={3}>
-            {step === 0 ? null : (
-              <Grid item xs={6}>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() => stepChange(step - 1)}
-                >
-                  Back
-                </Button>
-              </Grid>
-            )}
-            {step < pages.length - 1 ? (
-              <Grid item xs={6}>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => stepChange(step + 1)}
-                >
-                  Next
-                </Button>
-              </Grid>
-            ) : null}
-          </Grid>
-        </div>
-      </div>
+        
+        <Grid className={classes.footer} container spacing={3}>
+       
+          {step === 0 || step >= pages.length - 1 ? null : (
+           
+            <Grid item xs={6}>
+              <Button
+                variant="contained"
+                color="secondary"
+                fullWidth
+                onClick={() => stepChange(step - 1)}
+              >
+                Back
+              </Button>
+            </Grid>
+          )}
+          {step < pages.length - 1 && step > 0 ? (
+            <Grid item xs={6}>
+              <Button
+                variant="outlined"
+                color="primary"
+                fullWidth
+                onClick={() => stepChange(step + 1)}
+              >
+                Next
+              </Button>
+            </Grid>
+          ) : null}
+        </Grid>
+      </Paper>
     </Container>
   );
-  // switch (step) {
-  //   case "example":
-  //     return <FormExample />;
-  //   case 0:
-  //     return <Form00Register />;
-  //   case 1:
-  //     return <Form01Name />;
-  //   case 2:
-  //     return <Height classes={classes} />;
-  //   default:
-  //     return <div>Step Not found</div>;
-  // }
 }

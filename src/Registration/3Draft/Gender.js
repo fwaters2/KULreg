@@ -1,18 +1,15 @@
 import React from "react";
-import { Button, Typography, Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 export default function Gender(props) {
   const { classes, values, handleComplexChange } = props;
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        Gender
-      </Typography>
-      <form className={classes.form}>
-        <Grid container spacing={2}>
+      
+        <Grid container spacing={1}>
           <Grid item xs={6}>
             <Button
-              variant={values.gender === "female" ? "contained" : "outlined"}
+              variant={values.gender === "female" ? "outlined" : "contained"}
               color="secondary"
               className={classes.picButton}
               fullWidth
@@ -23,7 +20,7 @@ export default function Gender(props) {
           </Grid>
           <Grid item xs={6}>
             <Button
-              variant={values.gender === "male" ? "contained" : "outlined"}
+              variant={values.gender === "male" ? "outlined" : "contained"}
               color="primary"
               className={classes.picButton}
               fullWidth
@@ -33,7 +30,7 @@ export default function Gender(props) {
             </Button>
           </Grid>
         </Grid>
-      </form>
+      
     </React.Fragment>
   );
 }

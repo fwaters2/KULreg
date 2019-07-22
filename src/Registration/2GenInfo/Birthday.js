@@ -1,31 +1,55 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
 
 export default function Birthday(props) {
-  const {classes, handleChange, values} = props
+  const { handleChange, values } = props;
+  // const [month, changeMonth] = React.setState(06)
+  // const [day, changeDay]=React.setState(17)
+  // const [year, changeYear] = React.setState(1990)
+  // function localBday(month, day, year){
+  //   console.log("hello")
 
+  // }
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
-        Birthday
-      </Typography>
-    
-    <form className={classes.form} noValidate>
+      {/* {localBday()} */}
+      <i className="fas fa-birthday-cake fa-5x" />
       <TextField
-      autoFocus
+        autoFocus
         id="date"
         label="Birthday"
         type="date"
         value={values.birthday}
-        className={classes.textField}
+        defaultValue="1990-01-01"
         onChange={handleChange("birthday")}
         InputLabelProps={{
-          shrink: true,
+          shrink: true
         }}
         fullWidth
       />
-    </form>
+
+      {/* <FormControl fullWidth variant="outlined" key={date}>
+        <InputLabel ref={inputLabel} htmlFor="outlined-date-simple">
+          {date}
+        </InputLabel>
+        <Select
+          fullWidth
+          value={values[date]}
+          onChange={handleChange(date)}
+          input={
+            <OutlinedInput
+              labelWidth={labelWidth}
+              name="date"
+              id="outlined-date-simple"
+            />
+          }
+        >
+          <MenuItem value={"In"}>In</MenuItem>
+          <MenuItem value={"Likely"}>Likely</MenuItem>
+          <MenuItem value={"Unlikely"}>Unlikely</MenuItem>
+          <MenuItem value={"Out"}>Out</MenuItem>
+        </Select>
+      </FormControl> */}
     </React.Fragment>
   );
 }

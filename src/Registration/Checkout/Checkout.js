@@ -27,13 +27,17 @@ export default function Checkout(props) {
     desc:"",
     price:""
   })
+  function total(){
+    const { discBlack, discWhite , hatBlack, hatWhite } = values;
+    return 1200 //+ discBlack ? 400 : null + discWhite ? 400 : null + hatBlack ? 200 : null + hatWhite ? 200 : null
+  }
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Order summary
-      </Typography>
       <List disablePadding>
-   
+      <ListItem className={classes.listItem} >
+        <ListItemText primary={"KULPhoto"} secondary={"Early Bird Registration"} />
+        <Typography variant="body2">1200nt</Typography>
+      </ListItem>
         {values.discBlack?
         <ListItem className={classes.listItem} >
         <ListItemText primary={"Photo"} secondary={"Black Disc"} />
@@ -61,7 +65,7 @@ export default function Checkout(props) {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            2,000nt
+            {total()+"nt"}
           </Typography>
         </ListItem>
       </List>
