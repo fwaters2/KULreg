@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import "./SwagPics/Hat_Black.PNG";
+import "./SwagPics/hatBlack2.png";
 import "./SwagPics/Hat_White.jpg";
 import "./SwagPics/Disc_Black.jpg";
 import "./SwagPics/Disc_White.jpg";
@@ -16,7 +16,7 @@ import {
   FormControlLabel,
   Checkbox
 } from "@material-ui/core";
-const blackHatPic = require("./SwagPics/Hat_Black.PNG");
+const blackHatPic = require("./SwagPics/hatBlack2.png");
 const whiteHatPic = require("./SwagPics/Hat_White.jpg");
 const blackDiscPic = require("./SwagPics/Disc_Black.jpg");
 const whiteDiscPic = require("./SwagPics/Disc_White.jpg");
@@ -41,50 +41,45 @@ export default function ExtraSwag(props) {
   ];
   return (
     <React.Fragment>
-      <form className={classes.form}>
-        <CssBaseline />
-        <main>
-          <Container className={classes.cardGrid} maxWidth="md">
-            <Grid container spacing={1}>
-              {swag.map(item => (
-                <Grid item key={item.title} xs={12} sm={6}>
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={item.image}
-                      title={item.title}
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h6" component="h2">
-                        {item.title}
-                      </Typography>
-                      <FormControl component="fieldset">
-                        <FormGroup aria-label="position" name="position" row>
-                          <FormControlLabel
-                            value="start"
-                            control={
-                              <Checkbox
-                                color="primary"
-                                onChange={handleCheckBoxToggle(
-                                  item.id,
-                                  values[item.id]
-                                )}
-                                checked={values[item.id]}
-                              />
-                            }
-                            label={item.price}
-                            labelPlacement="start"
+      <Container className={classes.cardGrid}>
+        <Grid container spacing={1}>
+          {swag.map(item => (
+            <Grid item key={item.title} xs={6}>
+              <Card>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={item.image}
+                  title={item.title}
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    {item.title}
+                  </Typography>
+                  <FormControl component="fieldset">
+                    <FormGroup aria-label="position" name="position" row>
+                      <FormControlLabel
+                        value="start"
+                        control={
+                          <Checkbox
+                            color="primary"
+                            onChange={handleCheckBoxToggle(
+                              item.id,
+                              values[item.id]
+                            )}
+                            checked={values[item.id]}
                           />
-                        </FormGroup>
-                      </FormControl>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
+                        }
+                        label={item.price}
+                        labelPlacement="start"
+                      />
+                    </FormGroup>
+                  </FormControl>
+                </CardContent>
+              </Card>
             </Grid>
-          </Container>
-        </main>
-      </form>
+          ))}
+        </Grid>
+      </Container>
       <div style={{ backgroundColor: "red" }}>
         Placeholder for Extra Jersey Option
       </div>

@@ -51,11 +51,6 @@ const useStyles = makeStyles(theme => ({
   radioPage: {
     display: "flex"
   },
-  
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
-  },
   card: {
     height: "100%",
     display: "flex",
@@ -63,12 +58,6 @@ const useStyles = makeStyles(theme => ({
   },
   cardMedia: {
     paddingTop: "56.25%" // 16:9
-  },
-  cardContent: {
-    flexGrow: 1
-  },
-  listItem: {
-    padding: theme.spacing(1, 0)
   },
   total: {
     fontWeight: "700"
