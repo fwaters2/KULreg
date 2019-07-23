@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { CountryRegionData } from "react-country-region-selector";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Grid, Button, Container } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import "./Flags/Flag_of_the_United_States.svg";
 import "./Flags/Flag_of_Canada_(Pantone).svg";
 import "./Flags/Flag_of_the_Republic_of_China.svg";
@@ -98,16 +98,7 @@ export default function Nationality(props) {
         select
         onChange={handleChange("nationality")}
       >
-        <MenuItem key={"Taiwan"} value={"Taiwan"}>
-          {"Taiwan"}
-        </MenuItem>
-        <MenuItem key={"United States"} value={"United States"}>
-          {"United States"}
-        </MenuItem>
-        <MenuItem key={"Canada"} value={"Canada"}>
-          {"Canada"}
-        </MenuItem>
-        <hr />
+        
         {CountryRegionData.map(option => (
           <MenuItem key={option[0]} value={option[0]}>
             {option[0]}

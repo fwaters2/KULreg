@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import "../Choices.json";
 const data = require("../Choices.json");
 

@@ -4,10 +4,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Typography, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 export default function Commitments(props) {
-  const { classes, values, handleChange } = props;
+  const { values, handleChange } = props;
   //   const [values, setValues] = React.useState({
   //     date: "In",
   //     name: "hai"

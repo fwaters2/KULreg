@@ -2,7 +2,7 @@ import React from "react";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Grid, Typography, Paper, Divider } from "@material-ui/core";
+import { Button, Container, Grid, Typography, Paper } from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
 import Register from "./Register";
@@ -83,6 +83,10 @@ export default function FormContainer() {
     Skills: "test",
     EXP: "",
     ATHL: "",
+    facebookContact: false,
+    facebookID:"",
+    lineContact:false,
+    lineID:"",
     English: "",
     Chinese: "",
     Party: "",
@@ -234,6 +238,7 @@ export default function FormContainer() {
           classes={classes}
           handleChange={handleChange}
           values={values}
+          handleComplexChange={handleComplexChange}
         />
       )
     },

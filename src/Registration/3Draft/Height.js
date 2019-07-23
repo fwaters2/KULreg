@@ -2,21 +2,12 @@ import React from "react";
 import {
   Slider,
   Grid,
-  Input,
-  InputAdornment,
-  Typography,
-  FormControlLabel,
-  InputLabel
+  Typography
 } from "@material-ui/core";
 
 export default function Height(props) {
   const { classes, values, handleSliderChange } = props;
 
-  const [value, setValue] = React.useState(170);
-
-  const handleInputChange = event => {
-    setValue(event.target.value === "" ? "" : Number(event.target.value));
-  };
   function unitConverter(cm) {
     let alltheinches = Math.floor(cm / 2.54);
     let inches = alltheinches % 12;
@@ -24,13 +15,6 @@ export default function Height(props) {
     return feet + "ft " + inches + "in";
   }
 
-  const handleBlur = () => {
-    if (value < 140) {
-      setValue(140);
-    } else if (value > 220) {
-      setValue(220);
-    }
-  };
   return (
     <React.Fragment>
       <Grid container alignItems="center">
