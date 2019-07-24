@@ -2,7 +2,14 @@ import React from "react";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Grid, Typography, Paper, Switch } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Grid,
+  Typography,
+  Paper,
+  Switch
+} from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
 import Register from "./Register";
@@ -16,14 +23,16 @@ import Commitments from "./4CapInfo/Commitments";
 import JerseyOrder from "./5Jersey/JerseyOrder";
 import ExtraSwag from "./5Jersey/ExtraSwag";
 import Checkout from "./Checkout/Checkout";
-import './lang.json'
-const languages = require('./lang.json')
+import "./lang.json";
+import "./KUL_final.svg";
+const languages = require("./lang.json");
+const logo = require("./KUL_final.svg");
 const useStyles = makeStyles(theme => ({
   title: {
     margin: theme.spacing(3)
   },
   paper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -67,8 +76,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function FormContainer() {
   const [step, stepChange] = React.useState(0);
-  const [lang, toggleLang ] = React.useState("en")
-  const [chinese,toggleChinese] = React.useState(false)
+  const [lang, toggleLang] = React.useState("en");
+  const [chinese, toggleChinese] = React.useState(false);
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -87,9 +96,9 @@ export default function FormContainer() {
     EXP: "",
     ATHL: "",
     facebookContact: false,
-    facebookID:"",
-    lineContact:false,
-    lineID:"",
+    facebookID: "",
+    lineContact: false,
+    lineID: "",
     English: "",
     Chinese: "",
     Party: "",
@@ -110,9 +119,9 @@ export default function FormContainer() {
     order: []
   });
   const toggleLanguage = () => {
-    lang==="en"?toggleLang("ch"):toggleLang("en")
-      toggleChinese(!chinese)
-  }
+    lang === "en" ? toggleLang("ch") : toggleLang("en");
+    toggleChinese(!chinese);
+  };
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -148,15 +157,20 @@ export default function FormContainer() {
     {
       title: languages[lang].names,
       content: (
-        <Name language={languages[lang]} classes={classes} handleChange={handleChange} values={values} />
+        <Name
+          language={languages[lang]}
+          classes={classes}
+          handleChange={handleChange}
+          values={values}
+        />
       )
     },
     {
       title: languages[lang].birthday,
       content: (
         <Birthday
-        language={languages[lang]}  
-        classes={classes}
+          language={languages[lang]}
+          classes={classes}
           handleChange={handleChange}
           values={values}
         />
@@ -166,7 +180,7 @@ export default function FormContainer() {
       title: languages[lang].nationality,
       content: (
         <Nationality
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -178,7 +192,7 @@ export default function FormContainer() {
       title: languages[lang].firstSeason,
       content: (
         <Returning
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           handleComplexChange={handleComplexChange}
@@ -191,7 +205,7 @@ export default function FormContainer() {
       title: languages[lang].gender,
       content: (
         <Gender
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -203,7 +217,7 @@ export default function FormContainer() {
       title: languages[lang].height,
       content: (
         <Height
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -215,7 +229,7 @@ export default function FormContainer() {
       title: languages[lang].skills,
       content: (
         <MultipleChoice
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           category="Skills"
           values={values}
@@ -227,7 +241,7 @@ export default function FormContainer() {
       title: languages[lang].exp,
       content: (
         <MultipleChoice
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           category="EXP"
           values={values}
@@ -239,7 +253,7 @@ export default function FormContainer() {
       title: languages[lang].athl,
       content: (
         <MultipleChoice
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           category="ATHL"
           values={values}
@@ -251,7 +265,7 @@ export default function FormContainer() {
       title: languages[lang].contactInfo,
       content: (
         <Contact
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -263,7 +277,7 @@ export default function FormContainer() {
       title: languages[lang].languages,
       content: (
         <Language
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           values={values}
           handleButtonClick={handleButtonClick}
@@ -274,7 +288,7 @@ export default function FormContainer() {
       title: languages[lang].interests,
       content: (
         <Interests
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           values={values}
           handleButtonClick={handleButtonClick}
@@ -285,7 +299,7 @@ export default function FormContainer() {
       title: languages[lang].commitments,
       content: (
         <Commitments
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -296,7 +310,7 @@ export default function FormContainer() {
       title: languages[lang].teamJersey,
       content: (
         <JerseyOrder
-        language={languages[lang]}
+          language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -307,7 +321,7 @@ export default function FormContainer() {
       title: languages[lang].extraSwag,
       content: (
         <ExtraSwag
-        language={languages[lang]}
+          language={languages[lang]}
           handleCheckBoxToggle={handleCheckBoxToggle}
           classes={classes}
           values={values}
@@ -316,35 +330,58 @@ export default function FormContainer() {
     },
     {
       title: languages[lang].checkout,
-      content: <Checkout language={languages[lang]} classes={classes} values={values} />
+      content: (
+        <Checkout
+          language={languages[lang]}
+          classes={classes}
+          values={values}
+        />
+      )
     }
   ];
   return (
     <Container component="main" maxWidth="xs">
-      <div>{step}</div>
       <Paper className={classes.paper}>
-      <Typography align="right" variant="body2">
-        <Grid component="label" container alignItems="center">
-          <Grid item>中文</Grid>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
           <Grid item>
-            <Switch
-              checked={chinese}
-              onChange={toggleLanguage}
-              //value="checkedC"
-            />
+            <img src={logo} alt="logo" height="40px" />
+          </Grid>
+
+          <Grid item>
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="center"
+            >
+              <Grid item>
+                <Typography align="right" variant="body2">
+                  中文
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Switch
+                  checked={chinese}
+                  onChange={toggleLanguage}
+                  //value="checkedC"
+                />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Typography>
+
         <Typography className={classes.title} component="h1" variant="h5">
           {pages[step].title}
         </Typography>
         {pages[step].content}
-        
-        
+
         <Grid className={classes.footer} container spacing={3}>
-       
           {step === 0 || step >= pages.length - 1 ? null : (
-           
             <Grid item xs={6}>
               <Button
                 variant="contained"
@@ -352,7 +389,7 @@ export default function FormContainer() {
                 fullWidth
                 onClick={() => stepChange(step - 1)}
               >
-               {languages[lang].back}
+                {languages[lang].back}
               </Button>
             </Grid>
           )}

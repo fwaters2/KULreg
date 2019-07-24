@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import "../../Choices.json";
 import MultipleChoice from "../MultipleChoice.js";
 
 export default function Experience(props) {
@@ -10,11 +9,11 @@ export default function Experience(props) {
       <Grid container spacing={1}>
         <Grid item container justify='center' xs={6}>
           <Typography variant='h6'>{language.english}</Typography>
-          <MultipleChoice handleButtonClick={handleButtonClick} values={values} classes={classes} category={"English"} />
+          <MultipleChoice language={language} handleButtonClick={handleButtonClick} values={values} classes={classes} category={"English"} />
         </Grid>
         <Grid item container justify='center' xs={6}>
         <Typography variant='h6'>{language.chinese}</Typography>
-          <MultipleChoice handleButtonClick={handleButtonClick} values={values} classes={classes} category={"Chinese"} />
+          <MultipleChoice language= {language} handleButtonClick={handleButtonClick} values={values} classes={classes} category={"Chinese"} />
         </Grid>
       </Grid>
     </React.Fragment>
