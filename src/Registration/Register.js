@@ -8,7 +8,7 @@ import {
 import firebase from "../Firebase";
 
 export default function Register(props) {
-  const { changeStep, handleChange, values } = props;
+  const { language, changeStep, handleChange, values } = props;
   const handleRegistration = e => {
     e.preventDefault();
     //firebase.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
@@ -59,7 +59,7 @@ export default function Register(props) {
         required
         fullWidth
         id="email"
-        label="Email Address"
+        label={language.email}
         name="email"
         autoComplete="email"
         value={values.email}
@@ -72,7 +72,7 @@ export default function Register(props) {
         required
         fullWidth
         name="password"
-        label="Password"
+        label={language.password}
         type="password"
         id="password"
         value={values.password}
@@ -81,7 +81,7 @@ export default function Register(props) {
       />
       <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
+        label={language.rememberMe}
       />
       <Button
         type="submit"
@@ -90,7 +90,7 @@ export default function Register(props) {
         color="primary"
         onClick={handleRegistration}
       >
-        Sign In
+        {language.signIn}
       </Button>
     </React.Fragment>
   );

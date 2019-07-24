@@ -11,7 +11,7 @@ import {
 export default function Contact(props) {
   const [facebook, updateFB] = React.useState(false);
   const [line, updateLine] = React.useState(false);
-  const { values, handleComplexChange, handleChange } = props;
+  const { language, values, handleComplexChange, handleChange } = props;
   function toggleFacebook() {}
   function toggleLine() {}
 
@@ -19,7 +19,7 @@ export default function Contact(props) {
     <React.Fragment>
       <FormControl component="fieldset">
         <FormLabel component="legend">
-          Let your captain know the best way to reach you!
+          {language.bestWay}
         </FormLabel>
         <FormGroup>
           <FormControlLabel
@@ -36,7 +36,7 @@ export default function Contact(props) {
           />
           {values.facebookContact ? (
             <TextField
-              label={"What's your name on FB?"}
+              label={language.fbContact}
               value={values.facebookID}
               onChange={handleChange("facebookID")}
             />
@@ -47,7 +47,7 @@ export default function Contact(props) {
             }
             label="Line"
           />
-          {values.lineContact ? <TextField label={"Line ID"}  value={values.lineID}
+          {values.lineContact ? <TextField label={language.lineID}  value={values.lineID}
               onChange={handleChange("lineID")}/> : null}
         </FormGroup>
       </FormControl>

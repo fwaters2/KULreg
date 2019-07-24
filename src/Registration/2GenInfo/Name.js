@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
 
 export default function Name(props) {
-  const { handleChange, values } = props;
+  const { language, handleChange, values } = props;
 
   return (
     <React.Fragment>
@@ -13,7 +13,7 @@ export default function Name(props) {
             required
             autoComplete="fname"
             id="standard-required"
-            label="First Name"
+            label={language.firstName}
             margin="normal"
             helperText="Required*"
             variant="outlined"
@@ -28,7 +28,7 @@ export default function Name(props) {
             required
             autoComplete="lname"
             id="standard-required"
-            label="Last Name"
+            label={language.lastName}
             margin="normal"
             variant="outlined"
             helperText="Required*"
@@ -40,7 +40,7 @@ export default function Name(props) {
       </Grid>
       <TextField
         id="standard-required"
-        label="Chinese Name"
+        label={language.chName}
         fullWidth
         margin="normal"
         variant="outlined"
@@ -50,7 +50,7 @@ export default function Name(props) {
       />
       <TextField
         id="standard-required"
-        label="English Nickname"
+        label={language.enName}
         fullWidth
         margin="normal"
         variant="outlined"

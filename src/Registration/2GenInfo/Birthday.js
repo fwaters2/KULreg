@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 
 export default function Birthday(props) {
-  const { handleChange, values } = props;
+  const { language, handleChange, values } = props;
   // const [month, changeMonth] = React.setState(06)
   // const [day, changeDay]=React.setState(17)
   // const [year, changeYear] = React.setState(1990)
@@ -17,7 +17,7 @@ export default function Birthday(props) {
       <TextField
         autoFocus
         id="date"
-        label="Birthday"
+        label={language.birthday}
         type="date"
         value={values.birthday}
         defaultValue="1990-01-01"

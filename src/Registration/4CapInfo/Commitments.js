@@ -7,12 +7,12 @@ import Select from "@material-ui/core/Select";
 import { Grid } from "@material-ui/core";
 
 export default function Commitments(props) {
-  const { values, handleChange } = props;
+  const { language, values, handleChange } = props;
   //   const [values, setValues] = React.useState({
   //     date: "In",
   //     name: "hai"
   //   });
-  const dates = ["Day 1", "Day 2", "Day 3", "Day 4", "Finals"];
+  const dates = ["Day 1", "Day 2", "Day 3", "Day 4", language.finals];
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -44,10 +44,10 @@ export default function Commitments(props) {
             />
           }
         >
-          <MenuItem value={"In"}>In</MenuItem>
-          <MenuItem value={"Likely"}>Likely</MenuItem>
-          <MenuItem value={"Unlikely"}>Unlikely</MenuItem>
-          <MenuItem value={"Out"}>Out</MenuItem>
+          <MenuItem value={"In"}>{language.going}</MenuItem>
+          <MenuItem value={"Likely"}>{language.likely}</MenuItem>
+          <MenuItem value={"Unlikely"}>{language.unlikely}</MenuItem>
+          <MenuItem value={"Out"}>{language.out}</MenuItem>
         </Select>
       </FormControl>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import Gender from "./3Draft/Gender";
 import Height from "./3Draft/Height";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Grid, Typography, Paper } from "@material-ui/core";
+import { Button, Container, Grid, Typography, Paper, Switch } from "@material-ui/core";
 import Nationality from "./2GenInfo/Nationality";
 import Returning from "./2GenInfo/Returning";
 import Register from "./Register";
@@ -16,7 +16,8 @@ import Commitments from "./4CapInfo/Commitments";
 import JerseyOrder from "./5Jersey/JerseyOrder";
 import ExtraSwag from "./5Jersey/ExtraSwag";
 import Checkout from "./Checkout/Checkout";
-
+import './lang.json'
+const languages = require('./lang.json')
 const useStyles = makeStyles(theme => ({
   title: {
     margin: theme.spacing(3)
@@ -66,6 +67,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function FormContainer() {
   const [step, stepChange] = React.useState(0);
+  const [lang, toggleLang ] = React.useState("en")
+  const [chinese,toggleChinese] = React.useState(false)
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -106,6 +109,10 @@ export default function FormContainer() {
     hatWhite: false,
     order: []
   });
+  const toggleLanguage = () => {
+    lang==="en"?toggleLang("ch"):toggleLang("en")
+      toggleChinese(!chinese)
+  }
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -127,36 +134,39 @@ export default function FormContainer() {
   const classes = useStyles();
   const pages = [
     {
-      title: "Sign up",
+      title: languages[lang].signIn,
       content: (
         <Register
           changeStep={changeStep}
           classes={classes}
           handleChange={handleChange}
           values={values}
+          language={languages[lang]}
         />
       )
     },
     {
-      title: "Names",
+      title: languages[lang].names,
       content: (
-        <Name classes={classes} handleChange={handleChange} values={values} />
+        <Name language={languages[lang]} classes={classes} handleChange={handleChange} values={values} />
       )
     },
     {
-      title: "Birthday",
+      title: languages[lang].birthday,
       content: (
         <Birthday
-          classes={classes}
+        language={languages[lang]}  
+        classes={classes}
           handleChange={handleChange}
           values={values}
         />
       )
     },
     {
-      title: "Nationality",
+      title: languages[lang].nationality,
       content: (
         <Nationality
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -165,9 +175,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "First Season?",
+      title: languages[lang].firstSeason,
       content: (
         <Returning
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           handleComplexChange={handleComplexChange}
@@ -177,9 +188,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Gender",
+      title: languages[lang].gender,
       content: (
         <Gender
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -188,9 +200,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Height",
+      title: languages[lang].height,
       content: (
         <Height
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -199,9 +212,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Skills",
+      title: languages[lang].skills,
       content: (
         <MultipleChoice
+        language={languages[lang]}
           classes={classes}
           category="Skills"
           values={values}
@@ -210,9 +224,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Experience",
+      title: languages[lang].exp,
       content: (
         <MultipleChoice
+        language={languages[lang]}
           classes={classes}
           category="EXP"
           values={values}
@@ -221,9 +236,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Athletecism",
+      title: languages[lang].athl,
       content: (
         <MultipleChoice
+        language={languages[lang]}
           classes={classes}
           category="ATHL"
           values={values}
@@ -232,9 +248,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Contact Information",
+      title: languages[lang].contactInfo,
       content: (
         <Contact
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -243,9 +260,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Languages",
+      title: languages[lang].languages,
       content: (
         <Language
+        language={languages[lang]}
           classes={classes}
           values={values}
           handleButtonClick={handleButtonClick}
@@ -253,9 +271,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Interests",
+      title: languages[lang].interests,
       content: (
         <Interests
+        language={languages[lang]}
           classes={classes}
           values={values}
           handleButtonClick={handleButtonClick}
@@ -263,9 +282,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Commitments",
+      title: languages[lang].commitments,
       content: (
         <Commitments
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -273,9 +293,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Team Jersey",
+      title: languages[lang].teamJersey,
       content: (
         <JerseyOrder
+        language={languages[lang]}
           classes={classes}
           handleChange={handleChange}
           values={values}
@@ -283,9 +304,10 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Extra Swag",
+      title: languages[lang].extraSwag,
       content: (
         <ExtraSwag
+        language={languages[lang]}
           handleCheckBoxToggle={handleCheckBoxToggle}
           classes={classes}
           values={values}
@@ -293,14 +315,26 @@ export default function FormContainer() {
       )
     },
     {
-      title: "Checkout",
-      content: <Checkout classes={classes} values={values} />
+      title: languages[lang].checkout,
+      content: <Checkout language={languages[lang]} classes={classes} values={values} />
     }
   ];
   return (
     <Container component="main" maxWidth="xs">
       <div>{step}</div>
       <Paper className={classes.paper}>
+      <Typography align="right" variant="body2">
+        <Grid component="label" container alignItems="center">
+          <Grid item>中文</Grid>
+          <Grid item>
+            <Switch
+              checked={chinese}
+              onChange={toggleLanguage}
+              //value="checkedC"
+            />
+          </Grid>
+        </Grid>
+      </Typography>
         <Typography className={classes.title} component="h1" variant="h5">
           {pages[step].title}
         </Typography>
@@ -318,7 +352,7 @@ export default function FormContainer() {
                 fullWidth
                 onClick={() => stepChange(step - 1)}
               >
-                Back
+               {languages[lang].back}
               </Button>
             </Grid>
           )}
@@ -330,7 +364,7 @@ export default function FormContainer() {
                 fullWidth
                 onClick={() => stepChange(step + 1)}
               >
-                Next
+                {languages[lang].next}
               </Button>
             </Grid>
           ) : null}

@@ -13,7 +13,7 @@ import "./Jersey only.PNG";
 const JerseyShirt = require("./Jersey only.PNG");
 const JerseySizes = require("./Sizes only.PNG");
 export default function JerseyOrder(props) {
-  const { values, handleChange } = props;
+  const { language, values, handleChange } = props;
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
@@ -24,9 +24,9 @@ export default function JerseyOrder(props) {
       <Grid container spacing={1} alignItems="center">        <Grid item xs={12}>
           <TextField
             id="standard-required"
-            label="Name on back of Jersey"
+            label={language.nameBack}
             margin="normal"
-            helperText="Required*"
+            helperText={language.required}
             variant="outlined"
             autoFocus
             fullWidth
@@ -38,9 +38,9 @@ export default function JerseyOrder(props) {
         <Grid item xs={4}>
           <TextField
             id="standard-required"
-            label="Jersey #"
+            label={language.jerseyNum}
             margin="normal"
-            helperText="Required*"
+            helperText={language.required}
             variant="outlined"
             fullWidth
             type="number"
@@ -51,10 +51,10 @@ export default function JerseyOrder(props) {
         <Grid item xs={4}>
           <TextField
             id="standard-required"
-            label="Backup #"
+            label={language.backup}
             margin="normal"
             variant="outlined"
-            helperText="Required*"
+            helperText={language.required}
             fullWidth
             type="number"
             value={values.jerseyNum2}
@@ -64,7 +64,7 @@ export default function JerseyOrder(props) {
         <Grid item xs={4}>
           <FormControl fullWidth variant="outlined">
             <InputLabel ref={inputLabel}>
-              Size
+              {language.size}
             </InputLabel>
             <Select
               fullWidth

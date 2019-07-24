@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Grid, MenuItem, TextField } from "@material-ui/core";
 
 export default function Gender(props) {
-  const { classes, values, handleChange, handleComplexChange } = props;
+  const { language, classes, values, handleChange, handleComplexChange } = props;
   const genders=[
     "Agender",
     "Androgyne",
@@ -94,8 +94,7 @@ export default function Gender(props) {
       <br/>
       <TextField
         autoFocus
-        id="country"
-        label="Gender"
+        label={language.gender}
         fullWidth
         value={values.gender}
         select

@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 
 export default function Height(props) {
-  const { classes, values, handleSliderChange } = props;
+  const { language, classes, values, handleSliderChange } = props;
 
   function unitConverter(cm) {
     let alltheinches = Math.floor(cm / 2.54);
@@ -20,9 +20,9 @@ export default function Height(props) {
       <Grid container alignItems="center">
         <Grid item xs={8} container justify="center">
           {values.height === null ? (
-            <Typography variant="h6">How tall are you?</Typography>
+            <Typography variant="h6">{language.tall}</Typography>
           ) : (
-            <Typography variant="h3">{values.height}cm</Typography>
+            <Typography variant="h3">{values.height}{language.cm}</Typography>
           )}
         </Grid>
         <Grid item xs={4} className={classes.vertSlider}>

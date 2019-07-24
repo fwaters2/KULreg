@@ -21,22 +21,22 @@ const blackDiscPic = require("./SwagPics/Disc_Black.jpg");
 const whiteDiscPic = require("./SwagPics/Disc_White.jpg");
 
 export default function ExtraSwag(props) {
-  const { classes, values, handleCheckBoxToggle } = props;
+  const { language, classes, values, handleCheckBoxToggle } = props;
   const swag = [
     {
       id: "discBlack",
-      title: "Black Disc",
+      title: language.blackDisc,
       image: blackDiscPic,
       price: "400nt"
     },
     {
       id: "discWhite",
-      title: "White Disc",
+      title: language.whiteDisc,
       image: whiteDiscPic,
       price: "400nt"
     },
-    { id: "hatBlack", title: "Black Hat", image: blackHatPic, price: "200nt" },
-    { id: "hatWhite", title: "White Hat", image: whiteHatPic, price: "200nt" }
+    { id: "hatBlack", title: language.blackHat, image: blackHatPic, price: "200nt" },
+    { id: "hatWhite", title: language.whiteHat, image: whiteHatPic, price: "200nt" }
   ];
   return (
     <React.Fragment>

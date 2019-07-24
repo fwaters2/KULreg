@@ -18,7 +18,7 @@ const payments = [
 ];
 
 export default function Checkout(props) {
-  const {classes, values} = props
+  const {language, classes, values} = props
   const aswagOrder = values.discBlack?{name:"value"}:null
   const swagOrder= [values.discBlack,values.discWhite,values.hatBlack,values.hatWhite]
   {console.log(aswagOrder)}
@@ -72,7 +72,7 @@ export default function Checkout(props) {
       <Grid container spacing={2}>
            <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Transfer Information
+           {language.transferInfo}
           </Typography>
           <Grid container>
             {payments.map(payment => (
@@ -88,7 +88,7 @@ export default function Checkout(props) {
           </Grid>
         </Grid>
       </Grid>
-      <Button variant="contained" color="primary" fullWidth>Submit and Finish!</Button>
+      <Button variant="contained" color="primary" fullWidth>{language.submitFinish}</Button>
     </React.Fragment>
   );
 }

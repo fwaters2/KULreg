@@ -23,7 +23,7 @@ const flagSA = require("./Flags/Flag_of_South_Africa.svg");
 const flagPhil = require("./Flags/Flag_of_the_Philippines.svg");
 
 export default function Nationality(props) {
-  const { handleChange, values, handleComplexChange } = props;
+  const { language, handleChange, values, handleComplexChange } = props;
   const rowOne = [{ country: "Taiwan", image: flagTaiwan }];
   const rowTwo = [
     { country: "United States", image: flagUSA },
@@ -92,7 +92,7 @@ export default function Nationality(props) {
       <TextField
         autoFocus
         id="country"
-        label="Other Country"
+        label={language.otherCountry}
         fullWidth
         value={values.nationality}
         select

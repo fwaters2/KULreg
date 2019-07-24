@@ -12,6 +12,7 @@ import {
 
 export default function Returning(props) {
   const {
+    language,
     handleComplexChange,
     handleChange,
     values,
@@ -43,7 +44,7 @@ export default function Returning(props) {
             onClick={handleComplexChange("seasons", 0)}
             color="primary"
           >
-            Yep!
+            {language.yep}
           </Button>
         </Grid>
         <Grid item xs={6}>
@@ -54,14 +55,14 @@ export default function Returning(props) {
             onClick={handleComplexChange("seasons", 1)}
             color="primary"
           >
-            Nope!
+           {language.nope}
           </Button>
         </Grid>
       </Grid>
     </React.Fragment>
   ) : values.seasons === 0 ? (
     <React.Fragment>
-      <InputLabel> How did you hear about us?</InputLabel>
+      <InputLabel>{language.hearAbout}</InputLabel>
       <Select
         fullWidth
         value={values.source}
@@ -69,22 +70,22 @@ export default function Returning(props) {
         input={<Input />}
       >
         <MenuItem value={""}>
-          <em>Referred By:</em>
+          <em>{language.referredBy}</em>
         </MenuItem>
         <MenuItem value={"Facebook"}>Facebook</MenuItem>
-        <MenuItem value={"Google"}>Google</MenuItem>
-        <MenuItem value={"Pickup"}>Pickup</MenuItem>
-        <MenuItem value={"Player"}>Player</MenuItem>
-        <MenuItem value={"Friend"}>Friend</MenuItem>
+        <MenuItem value="Google">{language.google}</MenuItem>
+        <MenuItem value="Pickup">{language.pickup}</MenuItem>
+        <MenuItem value="KUL Player">{language.KULplayer}</MenuItem>
+        <MenuItem value="Friend">{language.friend}</MenuItem>
       </Select>
 
-      {values.source === "Player" || values.source === "Friend" ? (
+      {values.source === "KUL Player" || values.source === "Friend" ? (
         <TextField
           id="standard-helperText"
-          label={values.source}
+          label= {values.source === "Player"? language.KULplayer : language.friend }
           value={values.referredBy}
           onChange={handleChange("referredBy")}
-          helperText="Who should get credit?"
+          helperText={language.credit}
           margin="normal"
         />
       ) : null}
@@ -93,12 +94,12 @@ export default function Returning(props) {
         color="secondary"
         onClick={handleComplexChange("seasons", "unknown")}
       >
-        Back
+       {language.back}
       </Button>
     </React.Fragment>
   ) : (
     <React.Fragment>
-      <InputLabel>How many season's have you played?</InputLabel>
+      <InputLabel>{language.seasons}</InputLabel>
       <Slider
         value={values.seasons}
         onChange={handleSliderChange("seasons")}
@@ -111,7 +112,7 @@ export default function Returning(props) {
         color="secondary"
         onClick={handleComplexChange("seasons", "unknown")}
       >
-        Back
+        {language.back}
       </Button>
     </React.Fragment>
   );
