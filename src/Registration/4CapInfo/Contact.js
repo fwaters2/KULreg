@@ -9,11 +9,7 @@ import {
 } from "@material-ui/core";
 
 export default function Contact(props) {
-  const [facebook, updateFB] = React.useState(false);
-  const [line, updateLine] = React.useState(false);
   const { language, values, handleComplexChange, handleChange } = props;
-  function toggleFacebook() {}
-  function toggleLine() {}
 
   return (
     <React.Fragment>

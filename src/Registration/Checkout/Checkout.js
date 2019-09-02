@@ -1,17 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
+import '../KUL.svg'
+const logo = require('../KUL.svg')
 
-const products = [
-  { name: 'KUL Logo', desc: 'Early Registration', price: '1200nt' },
-  { name: 'Photo', desc: 'White Disc', price: '400nt' },
-  { name: 'photo', desc: 'Black Hat', price: '200nt' },
-];
+// const products = [
+//   { name: 'KUL Logo', desc: 'Early Registration', price: '1200nt' },
+//   { name: 'Photo', desc: 'White Disc', price: '400nt' },
+//   { name: 'photo', desc: 'Black Hat', price: '200nt' },
+// ];
 const payments = [
   { name: 'Bank Code', detail: '0123' },
   { name: 'Account Number', detail: '012345667' },
@@ -19,23 +20,18 @@ const payments = [
 
 export default function Checkout(props) {
   const {language, classes, values} = props
-  const aswagOrder = values.discBlack?{name:"value"}:null
-  const swagOrder= [values.discBlack,values.discWhite,values.hatBlack,values.hatWhite]
-  {console.log(aswagOrder)}
-  const items = products.push({
-    name:"",
-    desc:"",
-    price:""
-  })
+  //const aswagOrder = values.discBlack?{name:"value"}:null
+  //const swagOrder= [values.discBlack,values.discWhite,values.hatBlack,values.hatWhite]
+ 
   function total(){
-    const { discBlack, discWhite , hatBlack, hatWhite } = values;
+    //const { discBlack, discWhite , hatBlack, hatWhite } = values;
     return 1200 //+ discBlack ? 400 : null + discWhite ? 400 : null + hatBlack ? 200 : null + hatWhite ? 200 : null
   }
   return (
     <React.Fragment>
       <List disablePadding>
       <ListItem className={classes.listItem} >
-        <ListItemText primary={"KULPhoto"} secondary={"Early Bird Registration"} />
+  <ListItemText primary={<img src={logo} alt="logo" height="20px" />} secondary={"Early Bird Registration"} />
         <Typography variant="body2">1200nt</Typography>
       </ListItem>
         {values.discBlack?

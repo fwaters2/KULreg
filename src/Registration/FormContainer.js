@@ -21,6 +21,7 @@ import MultipleChoice from "./MultipleChoice";
 import Interests from "./4CapInfo/Interests";
 import Commitments from "./4CapInfo/Commitments";
 import JerseyOrder from "./5Jersey/JerseyOrder";
+import Carousel from "./5Jersey/Carousel"
 import ExtraSwag from "./5Jersey/ExtraSwag";
 import Checkout from "./Checkout/Checkout";
 import "./lang.json";
@@ -75,7 +76,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function FormContainer() {
-  const [step, stepChange] = React.useState(0);
+  const [step, stepChange] = React.useState(15);
   const [lang, toggleLang] = React.useState("en");
   const [chinese, toggleChinese] = React.useState(false);
   const [values, setValues] = React.useState({
@@ -85,7 +86,7 @@ export default function FormContainer() {
     lastName: "",
     chName: "",
     nickName: "",
-    birthday: null,
+    birthday: "",
     nationality: "",
     seasons: "unknown",
     source: "",
@@ -112,10 +113,11 @@ export default function FormContainer() {
     size: "",
     jerseyNum1: "",
     jerseyNum2: "",
-    discBlack: false,
-    discWhite: false,
-    hatBlack: false,
-    hatWhite: false,
+    discBlack: 0,
+    discWhite: 0,
+    hatBlack: 0,
+    hatWhite: 0,
+    subtotal: 1100,
     order: []
   });
   const toggleLanguage = () => {
@@ -320,6 +322,17 @@ export default function FormContainer() {
     {
       title: languages[lang].extraSwag,
       content: (
+        <Carousel
+          language={languages[lang]}
+          handleComplexChange={handleComplexChange}
+          classes={classes}
+          values={values}
+        />
+      )
+    },
+    {
+      title: languages[lang].extraSwag,
+      content: (
         <ExtraSwag
           language={languages[lang]}
           handleCheckBoxToggle={handleCheckBoxToggle}
@@ -381,7 +394,7 @@ export default function FormContainer() {
         {pages[step].content}
 
         <Grid className={classes.footer} container spacing={3}>
-          {step === 0 || step >= pages.length - 1 ? null : (
+          {step === 0 || step >= pages.length ? null : (
             <Grid item xs={6}>
               <Button
                 variant="contained"

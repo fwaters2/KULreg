@@ -15,7 +15,7 @@ export default function Name(props) {
             id="standard-required"
             label={language.firstName}
             margin="normal"
-            helperText="Required*"
+            helperText={language.required}
             variant="outlined"
             value={values.firstName}
             autoFocus
@@ -31,7 +31,7 @@ export default function Name(props) {
             label={language.lastName}
             margin="normal"
             variant="outlined"
-            helperText="Required*"
+            helperText={language.required}
             fullWidth
             value={values.lastName}
             onChange={handleChange("lastName")}

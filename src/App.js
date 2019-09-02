@@ -4,7 +4,6 @@ import FormContainer from "./Registration/FormContainer";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 function App() {
-  return <FormContainer />;
+  return <FormContainer />
 }
-
 export default App;

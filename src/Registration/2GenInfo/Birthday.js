@@ -20,7 +20,7 @@ export default function Birthday(props) {
         label={language.birthday}
         type="date"
         value={values.birthday}
-        defaultValue="1990-01-01"
+        //defaultValue="1990-01-01"
         onChange={handleChange("birthday")}
         InputLabelProps={{
           shrink: true

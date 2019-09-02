@@ -18,7 +18,6 @@ export default function Register(props) {
     // ...
     // });
     changeStep();
-    console.log("working" + values.email + values.password);
   };
   function checkSignIn() {
     var actionCodeSettings = {
@@ -40,12 +39,14 @@ export default function Register(props) {
         var uid = user.uid;
         var providerData = user.providerData;
         console.log(email + displayName + emailVerified);
+        changeStep(1)
         // ...
         //Send user auth email
         //firebase.auth().sendSignInLinkToEmail(email,actionCodeSettings)
       } else {
         // User is signed out.
         // ...
+        changeStep(0)
         console.log("not signed in");
       }
     });
