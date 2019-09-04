@@ -12,7 +12,7 @@ export default function Commitments(props) {
   //     date: "In",
   //     name: "hai"
   //   });
-  const dates = ["Day 1", "Day 2", "Day 3", "Day 4", language.finals];
+  const dates = ["10/19", "10/26", "11/9", "11/16", "11/23", language.finals];
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);

@@ -21,11 +21,12 @@ import MultipleChoice from "./MultipleChoice";
 import Interests from "./4CapInfo/Interests";
 import Commitments from "./4CapInfo/Commitments";
 import JerseyOrder from "./5Jersey/JerseyOrder";
-import Carousel from "./5Jersey/Carousel"
-import ExtraSwag from "./5Jersey/ExtraSwag";
+import Carousel from "./5Jersey/Carousel";
 import Checkout from "./Checkout/Checkout";
 import "./lang.json";
 import "./KUL_final.svg";
+import "./InitialState.json";
+import Result from "./Checkout/Result";
 const languages = require("./lang.json");
 const logo = require("./KUL_final.svg");
 const useStyles = makeStyles(theme => ({
@@ -62,100 +63,29 @@ const useStyles = makeStyles(theme => ({
   radioPage: {
     display: "flex"
   },
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column"
-  },
-  cardMedia: {
-    paddingTop: "56.25%" // 16:9
-  },
   total: {
     fontWeight: "700"
   }
 }));
 
-export default function FormContainer() {
-  const [step, stepChange] = React.useState(15);
-  const [lang, toggleLang] = React.useState("en");
-  const [chinese, toggleChinese] = React.useState(false);
-  const [values, setValues] = React.useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    chName: "",
-    nickName: "",
-    birthday: "",
-    nationality: "",
-    seasons: "unknown",
-    source: "",
-    referredBy: "",
-    gender: "",
-    height: null,
-    Skills: "test",
-    EXP: "",
-    ATHL: "",
-    facebookContact: false,
-    facebookID: "",
-    lineContact: false,
-    lineID: "",
-    English: "",
-    Chinese: "",
-    Party: "",
-    Improve: "",
-    "Day 1": "",
-    "Day 2": "",
-    "Day 3": "",
-    "Day 4": "",
-    Finals: "",
-    jerseyBack: "",
-    size: "",
-    jerseyNum1: "",
-    jerseyNum2: "",
-    discBlack: 0,
-    discWhite: 0,
-    hatBlack: 0,
-    hatWhite: 0,
-    subtotal: 1100,
-    order: []
-  });
-  const toggleLanguage = () => {
-    lang === "en" ? toggleLang("ch") : toggleLang("en");
-    toggleChinese(!chinese);
-  };
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-  const handleButtonClick = (name, value) => {
-    setValues({ ...values, [name]: value });
-  };
-  const handleComplexChange = (name, value) => () => {
-    setValues({ ...values, [name]: value });
-  };
-  const handleSliderChange = name => (e, value) => {
-    setValues({ ...values, [name]: value });
-  };
-  const handleCheckBoxToggle = (name, value) => () => {
-    setValues({ ...values, [name]: !value });
-  };
-  const changeStep = () => {
-    stepChange(step + 1);
-  };
+export default function FormContainer(props) {
+  const {
+    toggleLanguage,
+    handleChange,
+    handleButtonClick,
+    handleComplexChange,
+    handleSliderChange,
+    changeStep,
+    values,
+    lang,
+    step,
+    stepChange,
+    chinese,
+    isSignedIn,
+    setValues
+  } = props;
   const classes = useStyles();
   const pages = [
-    {
-      title: languages[lang].signIn,
-      content: (
-        <Register
-          changeStep={changeStep}
-          classes={classes}
-          handleChange={handleChange}
-          values={values}
-          language={languages[lang]}
-        />
-      )
-    },
     {
       title: languages[lang].names,
       content: (
@@ -331,27 +261,19 @@ export default function FormContainer() {
       )
     },
     {
-      title: languages[lang].extraSwag,
-      content: (
-        <ExtraSwag
-          language={languages[lang]}
-          handleCheckBoxToggle={handleCheckBoxToggle}
-          classes={classes}
-          values={values}
-        />
-      )
-    },
-    {
       title: languages[lang].checkout,
       content: (
         <Checkout
           language={languages[lang]}
           classes={classes}
           values={values}
+          handleComplexChange={handleComplexChange}
+          setValues={setValues}
         />
       )
     }
   ];
+
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
@@ -364,7 +286,6 @@ export default function FormContainer() {
           <Grid item>
             <img src={logo} alt="logo" height="40px" />
           </Grid>
-
           <Grid item>
             <Grid
               container
@@ -378,21 +299,42 @@ export default function FormContainer() {
                 </Typography>
               </Grid>
               <Grid item>
-                <Switch
-                  checked={chinese}
-                  onChange={toggleLanguage}
-                  //value="checkedC"
-                />
+                <Switch checked={chinese} onChange={toggleLanguage} />
               </Grid>
             </Grid>
           </Grid>
         </Grid>
 
-        <Typography className={classes.title} component="h1" variant="h5">
-          {pages[step].title}
-        </Typography>
-        {pages[step].content}
-
+        {isSignedIn ? (
+          <React.Fragment>
+            <Typography className={classes.title} component="h1" variant="h5">
+              {pages[step].title}
+            </Typography>
+            {pages[step].content}
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Typography className={classes.title} component="h1" variant="h5">
+              {languages[lang].signIn}
+            </Typography>
+            <Register
+              changeStep={changeStep}
+              classes={classes}
+              handleChange={handleChange}
+              values={values}
+              language={languages[lang]}
+            />
+          </React.Fragment>
+        )}
+        <Result
+          //langStrings={langStrings}
+          values={values}
+          open={values.isRegistered}
+          onClose={handleComplexChange("isRegistered", true)}
+          handleChange={handleChange}
+          setValues={setValues}
+          // result={result}
+        />
         <Grid className={classes.footer} container spacing={3}>
           {step === 0 || step >= pages.length ? null : (
             <Grid item xs={6}>
@@ -406,7 +348,7 @@ export default function FormContainer() {
               </Button>
             </Grid>
           )}
-          {step < pages.length - 1 && step > 0 ? (
+          {step < pages.length - 1 ? (
             <Grid item xs={6}>
               <Button
                 variant="outlined"

@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -14,18 +13,8 @@ import "./SwagPics/Disc_Black.jpg";
 import "./SwagPics/Disc_White.jpg";
 import {
   List,
-  ListItem,
-  IconButton,
-  TextField,
-  Box,
-  ListItemText
+  Box
 } from "@material-ui/core";
-import {
-  Add,
-  AddCircle,
-  AddCircleOutline,
-  RemoveCircleOutline
-} from "@material-ui/icons";
 import SwagItem from "./SwagItem";
 const blackHatPic = require("./SwagPics/hatBlack2.png");
 const whiteHatPic = require("./SwagPics/Hat_White.jpg");
@@ -86,7 +75,6 @@ export default function Carousel(props) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
-  const subtotal = values.subtotal;
 
   function handleNext() {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
